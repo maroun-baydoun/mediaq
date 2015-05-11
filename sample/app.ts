@@ -1,11 +1,11 @@
 "use strict";
-import mq = require("../mediaq");
+import {Mediaq, MediaQuery} from "../mediaq";
 
 var events: HTMLElement = document.getElementById("events");
 
-var mediaq = new mq.Mediaq()
+var mediaq = new Mediaq()
     .fromStyleSheets()
-    .onMediaQueryMatched((mediaQuery: mq.MediaQuery, matched: boolean) => {
+    .onMediaQueryMatched((mediaQuery: MediaQuery, matched: boolean) => {
         var event: HTMLElement = document.createElement("li");
         event.innerText = mediaQuery.value + " " + (matched ? "was matched" : "was not matched");
         events.appendChild(event);
