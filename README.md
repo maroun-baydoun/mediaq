@@ -20,7 +20,6 @@ import mq = require("mediaq");
 var mediaq = new mq.Mediaq()
                    .fromStyleSheets()
                    .onMediaQueryMatched((mediaQuery: mq.MediaQuery, matched: boolean) => { })
-                   .match()
                    .listen();
 ```
 
@@ -28,7 +27,6 @@ var mediaq = new mq.Mediaq()
 ####Methods
 
 * ```fromStyleSheets()``` : searches for media queries defined in the stylesheets loaded in the document.
-* ```match()``` : does the initial matching of media queries, and notifies the listeners registered on the ```Mediaq``` instance.
 * ```listen()``` : listens to changes in media queries and and notifies the listeners registered on the ```Mediaq``` instance everytime a media query becomes or stops being matched.
 *```onMediaQueryMatched((mediaQuery: mq.MediaQuery, matched: boolean))``` : Adds a listener that will triggered by the ```match()``` and ```listen()``` methods.
 

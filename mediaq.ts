@@ -18,12 +18,10 @@ export interface MediaQueryMatchChangedListener {
 }
 
 export class Mediaq {
-    private _mediaLists: Array<MediaList>;
     private _mediaQueryLists: Array<MediaQueryList>;
     private _listeners: Array<MediaQueryMatchChangedListener>;
 
     public constructor() {
-        this._mediaLists = [];
         this._mediaQueryLists = [];
         this._listeners = [];
 
@@ -38,7 +36,7 @@ export class Mediaq {
             rules: CSSRuleList = null,
             rule: CSSRule = null,
             mediaList: MediaList = null,
-            ruleMediaText: string = null,
+            mediaQueryList: MediaQueryList = null,
             i: number = length,
             j: number = 0;
 
@@ -54,7 +52,9 @@ export class Mediaq {
 
                 if (rule.constructor === CSSMediaRule) {
                     mediaList = (<CSSMediaRule>rule).media;
-                    this._mediaLists.push(mediaList);
+                    mediaQueryList = window.matchMedia(mediaList.mediaText);
+
+                    this._mediaQueryLists.push(mediaQueryList);
 
                 }
             }
@@ -63,6 +63,7 @@ export class Mediaq {
 
         return this;
     }
+
 
     public onMediaQueryMatched(listener: MediaQueryMatchChangedListener): Mediaq {
 
@@ -76,29 +77,35 @@ export class Mediaq {
         var length: number = this._mediaQueryLists.length,
             i: number = length,
             self: Mediaq = this,
-            mediaQueryList: MediaQueryList = null;
+            mediaQueryList: MediaQueryList = null,
+            matches: boolean = false;
 
+            var invokeListeners = (media: string, matches: boolean) => {
+              if (this._listeners.length > 0) {
+                  length = this._listeners.length;
+                  var listener: Function = null,
+                      mediaQuery: MediaQuery = new MediaQuery(media),
+                      j = length;
+
+                  while (j--) {
+
+                      listener = this._listeners[j];
+
+                      listener.call(this, mediaQuery, matches);
+                  }
+              }
+            };
 
         while (i--) {
 
             mediaQueryList = this._mediaQueryLists[i];
 
+            matches = mediaQueryList.matches;
+
+            invokeListeners(mediaQueryList.media, matches);
+
             mediaQueryList.addListener(function(event) {
-                if (self._listeners.length > 0) {
-                    length = self._listeners.length;
-                    var listener: Function = null,
-                        mediaQuery: MediaQuery = null,
-                        j = length;
-
-                    while (j--) {
-
-                        mediaQuery = new MediaQuery(event.media);
-
-                        listener = self._listeners[j];
-
-                        listener.call(self, mediaQuery, event.matches);
-                    }
-                }
+              invokeListeners(event.media, event.matches);
             });
 
         }
@@ -106,48 +113,7 @@ export class Mediaq {
         return this;
     }
 
-    public match(): Mediaq {
-
-        var length: number = this._mediaLists.length,
-            i: number = length,
-            mediaList: MediaList = null,
-            mediaQueryList: MediaQueryList = null,
-            matches: boolean = false;
-
-
-        while (i--) {
-
-            mediaList = this._mediaLists[i];
-            mediaQueryList = window.matchMedia(mediaList.mediaText);
-
-            this._mediaQueryLists.push(mediaQueryList);
-
-            matches = mediaQueryList.matches;
-
-            if (this._listeners.length > 0) {
-                length = this._listeners.length;
-                var listener: Function = null,
-                    mediaQuery: MediaQuery = null,
-                    j = length;
-
-                while (j--) {
-
-                    mediaQuery = new MediaQuery(mediaQueryList.media);
-
-                    listener = this._listeners[j];
-
-                    listener.call(this, mediaQuery, matches);
-                }
-            }
-        }
-
-        return this;
-    }
-
-
     public reset(): void {
-
-        this._mediaLists = [];
         this._mediaQueryLists = [];
         this._listeners = [];
     }

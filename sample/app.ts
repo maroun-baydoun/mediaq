@@ -10,5 +10,4 @@ var mediaq = new Mediaq()
         event.innerText = mediaQuery.value + " " + (matched ? "was matched" : "was not matched");
         events.appendChild(event);
     })
-    .match()
     .listen();

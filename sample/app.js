@@ -8,6 +8,5 @@ define(["require", "exports", "../mediaq"], function (require, exports, mediaq_1
         event.innerText = mediaQuery.value + " " + (matched ? "was matched" : "was not matched");
         events.appendChild(event);
     })
-        .match()
         .listen();
 });
