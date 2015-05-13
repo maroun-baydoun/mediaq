@@ -64,6 +64,14 @@ export class Mediaq {
         return this;
     }
 
+    public mediaQuery(value: string): Mediaq {
+
+      var mediaQueryList = window.matchMedia(value);
+      this._mediaQueryLists.push(mediaQueryList);
+
+      return this;
+    }
+
 
     public onMediaQueryMatched(listener: MediaQueryMatchChangedListener): Mediaq {
 
