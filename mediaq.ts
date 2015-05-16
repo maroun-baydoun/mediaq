@@ -52,10 +52,7 @@ export class Mediaq {
 
                 if (rule.constructor === CSSMediaRule) {
                     mediaList = (<CSSMediaRule>rule).media;
-                    mediaQueryList = window.matchMedia(mediaList.mediaText);
-
-                    this._mediaQueryLists.push(mediaQueryList);
-
+                    this.addMediaQuery(mediaList.mediaText);
                 }
             }
 
@@ -64,10 +61,9 @@ export class Mediaq {
         return this;
     }
 
-    public mediaQuery(value: string): Mediaq {
+    public mediaQuery(media: string): Mediaq {
 
-      var mediaQueryList = window.matchMedia(value);
-      this._mediaQueryLists.push(mediaQueryList);
+      this.addMediaQuery(media);
 
       return this;
     }
@@ -126,5 +122,9 @@ export class Mediaq {
         this._listeners = [];
     }
 
+    private addMediaQuery(media: string): void {
+      var mediaQueryList = window.matchMedia(media);
+      this._mediaQueryLists.push(mediaQueryList);
+    }
 
 }
