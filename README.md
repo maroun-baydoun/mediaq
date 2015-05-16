@@ -13,19 +13,19 @@ Listen to media queries updates in TypeScript
 ```
 2. Import Mediaq
 ```typescript
-import mq = require("mediaq");
+import {Mediaq, MediaQuery} from "mediaq";
 ```
 3. Initialize a Mediaq instance
 ```typescript
-var mediaq = new mq.Mediaq()
-                   .onMediaQueryMatched((mediaQuery: mq.MediaQuery, matched: boolean) => { })
-                   .fromStyleSheets()
-                   .mediaQuery(mediaQuery: string);
+var mediaq = new Mediaq()
+                 .onMediaQueryMatched((mediaQuery: MediaQuery, matched: boolean) => { })
+                 .fromStyleSheets()
+                 .mediaQuery(mediaQuery: string);
 ```
 
 
 ####Methods
-* ```onMediaQueryMatched((mediaQuery: mq.MediaQuery, matched: boolean))``` : adds a listener that will triggered every time a media query is matched. Should be called before ```fromStyleSheets()``` and ```mediaQuery(mediaQuery: string)```,  otherwise the listeners will not be triggered on page load .
+* ```onMediaQueryMatched((mediaQuery: MediaQuery, matched: boolean))``` : adds a listener that will triggered every time a media query is matched. Should be called before ```fromStyleSheets()``` and ```mediaQuery(mediaQuery: string)```,  otherwise the listeners will not be triggered on page load .
 * ```fromStyleSheets()``` : searches for media queries defined in the stylesheets loaded in the document.
 * ```mediaQuery(mediaQuery: string)``` : adds a media query that was not defined in stylesheets.
 
