@@ -22,6 +22,7 @@ export class Mediaq {
     private _listeners: Array<MediaQueryMatchChangedListener>;
 
     public constructor() {
+
         this._mediaQueryLists = [];
         this._listeners = [];
 
@@ -71,60 +72,51 @@ export class Mediaq {
 
     public onMediaQueryMatched(listener: MediaQueryMatchChangedListener): Mediaq {
 
-        this._listeners.push(listener);
+      this._listeners.push(listener);
 
-        return this;
+      return this;
     }
 
     public listen(): Mediaq {
-
-        var length: number = this._mediaQueryLists.length,
-            i: number = length,
-            self: Mediaq = this,
-            mediaQueryList: MediaQueryList = null,
-            matches: boolean = false;
-
-            var invokeListeners = (media: string, matches: boolean) => {
-              if (this._listeners.length > 0) {
-                  length = this._listeners.length;
-                  var listener: Function = null,
-                      mediaQuery: MediaQuery = new MediaQuery(media),
-                      j = length;
-
-                  while (j--) {
-
-                      listener = this._listeners[j];
-
-                      listener.call(this, mediaQuery, matches);
-                  }
-              }
-            };
-
-        while (i--) {
-
-            mediaQueryList = this._mediaQueryLists[i];
-
-            matches = mediaQueryList.matches;
-
-            invokeListeners(mediaQueryList.media, matches);
-
-            mediaQueryList.addListener(function(event) {
-              invokeListeners(event.media, event.matches);
-            });
-
-        }
 
         return this;
     }
 
     public reset(): void {
-        this._mediaQueryLists = [];
-        this._listeners = [];
+
+      this._mediaQueryLists = [];
+      this._listeners = [];
     }
 
     private addMediaQuery(media: string): void {
+
       var mediaQueryList = window.matchMedia(media);
+      this.listenToMediaQueryChanges(mediaQueryList);
       this._mediaQueryLists.push(mediaQueryList);
     }
 
+    private listenToMediaQueryChanges(mediaQueryList : MediaQueryList): void {
+
+      var invokeListeners = (media: string, matches: boolean) => {
+        if (this._listeners.length > 0) {
+            length = this._listeners.length;
+            var listener: Function = null,
+                mediaQuery: MediaQuery = new MediaQuery(media),
+                j = length;
+
+            while (j--) {
+
+                listener = this._listeners[j];
+
+                listener.call(this, mediaQuery, matches);
+            }
+        }
+      };
+
+      invokeListeners(mediaQueryList.media, mediaQueryList.matches);
+
+      mediaQueryList.addListener(function(event) {
+        invokeListeners(event.media, event.matches);
+      });
+    }
 }
