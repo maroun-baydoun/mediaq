@@ -77,12 +77,6 @@ export class Mediaq {
       return this;
     }
 
-    public reset(): void {
-
-      this._mediaQueryLists = [];
-      this._listeners = [];
-    }
-
     private addMediaQuery(media: string): void {
 
       var mediaQueryList = window.matchMedia(media);
