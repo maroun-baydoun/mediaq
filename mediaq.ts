@@ -77,11 +77,6 @@ export class Mediaq {
       return this;
     }
 
-    public listen(): Mediaq {
-
-        return this;
-    }
-
     public reset(): void {
 
       this._mediaQueryLists = [];
