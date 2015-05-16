@@ -9,4 +9,10 @@ define(["require", "exports", "../mediaq"], function (require, exports, mediaq_1
     })
         .fromStyleSheets()
         .mediaQuery("only screen and (max-width: 500px)");
+    window.setTimeout(function () {
+        mediaq.mediaQuery("only screen and (min-width: 500px)");
+    }, 1000);
+    window.setTimeout(function () {
+        mediaq.mediaQuery("only screen and (max-width: 200px)");
+    }, 2000);
 });

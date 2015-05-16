@@ -11,3 +11,12 @@ var mediaq = new Mediaq()
     })
     .fromStyleSheets()
     .mediaQuery("only screen and (max-width: 500px)");
+
+    /** Media queries added subsequently will trigger listeners as well **/
+    window.setTimeout(function(){
+      mediaq.mediaQuery("only screen and (min-width: 500px)");
+    }, 1000);
+
+    window.setTimeout(function(){
+      mediaq.mediaQuery("only screen and (max-width: 200px)");
+    }, 2000);
