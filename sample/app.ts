@@ -1,15 +1,27 @@
 "use strict";
 import {Mediaq, MediaQuery} from "../mediaq";
 
-var events: HTMLElement = document.getElementById("events");
+var mediaQueriesList: HTMLElement = document.getElementById("mediaQueries");
 
 var mediaq = new Mediaq()
     .fromStyleSheets()
     .mediaQuery("only screen and (max-width: 500px)")
     .onMediaQueryMatchedChanged((mediaQuery: MediaQuery) => {
-      var event: HTMLElement = document.createElement("li");
-      event.innerText = mediaQuery.media + " " + (mediaQuery.matched ? "was matched" : "was not matched");
-      events.appendChild(event);
+      var mediaQueryItem: HTMLElement = <HTMLElement>document.querySelector("li[data-media='" + mediaQuery + "']");
+      if (!mediaQueryItem) {
+        mediaQueryItem = document.createElement("li");
+        mediaQueryItem.innerText = mediaQuery.media;
+        mediaQueryItem.dataset["media"] = mediaQuery.media;
+        mediaQueriesList.appendChild(mediaQueryItem);
+      }
+
+      if (mediaQuery.matched) {
+        mediaQueryItem.classList.add("matched");
+
+      } else {
+        mediaQueryItem.classList.remove("matched");
+      }
+
     })
     .start();
 

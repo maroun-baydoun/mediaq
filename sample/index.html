@@ -2,9 +2,34 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Mediaq Sample</title>
 	<script data-main="app.js" src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>
 	<style>
+
+	ul{
+			width: 80%;
+			margin: 10% auto;
+	}
+
+
+	li{
+		float: left;
+		list-style: none;
+		width: 100px;
+		height: 100px;
+		padding: 10px;
+		margin:0 5px 5px 0;
+		background-color: red;
+		color: white;
+		font-size: 14px;
+		text-align: center;
+	}
+
+	li.matched{
+		background-color: green;
+	}
+
 	@media only screen and (max-width: 767px){
 
 	}
@@ -15,6 +40,6 @@
 	</style>
 </head>
 <body>
-	<ul id="events"></ul>
+	<ul id="mediaQueries"></ul>
 </body>
 </html>
