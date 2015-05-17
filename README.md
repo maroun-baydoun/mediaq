@@ -31,5 +31,6 @@ var mediaq = new Mediaq()
 * ```onMediaQueryMatched((mediaQuery: MediaQuery, matched: boolean))``` : adds a listener that will triggered every time a media query is matched.
 * ```start()``` : starts listening to changes in media queries.
 * ```stop()``` : stops listening to changes in media queries.
+* ```mediaQueries()``` : returns the media queries added by ```fromStyleSheets()``` and ```mediaQuery(mediaQuery: string)``` methods.
 ####Example
 See [sample](https://github.com/maroun-baydoun/mediaq/tree/master/sample) directory.

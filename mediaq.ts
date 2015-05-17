@@ -129,6 +129,11 @@ export class Mediaq {
       return this;
     }
 
+    public mediaQueries(): Array<MediaQuery> {
+
+      return this._mediaQueries.values();
+    }
+
     private addMediaQuery(media: string): void {
 
       var mediaQuery: MediaQuery = new MediaQuery(media);
