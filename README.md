@@ -18,16 +18,17 @@ import {Mediaq, MediaQuery} from "mediaq";
 3. Initialize a Mediaq instance
 ```typescript
 var mediaq = new Mediaq()
-                 .onMediaQueryMatched((mediaQuery: MediaQuery, matched: boolean) => { })
                  .fromStyleSheets()
-                 .mediaQuery(mediaQuery: string);
+                 .mediaQuery(mediaQuery: string)
+                 .onMediaQueryMatched((mediaQuery: MediaQuery, matched: boolean) => { })
+                 .start();
 ```
 
 
 ####Methods
-* ```onMediaQueryMatched((mediaQuery: MediaQuery, matched: boolean))``` : adds a listener that will triggered every time a media query is matched. Should be called before ```fromStyleSheets()``` and ```mediaQuery(mediaQuery: string)```,  otherwise the listeners will not be triggered on page load .
 * ```fromStyleSheets()``` : searches for media queries defined in the stylesheets loaded in the document.
 * ```mediaQuery(mediaQuery: string)``` : adds a media query that was not defined in stylesheets.
-
+* ```onMediaQueryMatched((mediaQuery: MediaQuery, matched: boolean))``` : adds a listener that will triggered every time a media query is matched.
+* ```start()``` : starts listening to changes in media queries.
 ####Example
 See [sample](https://github.com/maroun-baydoun/mediaq/tree/master/sample) directory.

@@ -20,6 +20,7 @@ export interface MediaQueryMatchChangedListener {
 export class Mediaq {
     private _mediaQueryLists: Array<MediaQueryList>;
     private _listeners: Array<MediaQueryMatchChangedListener>;
+    private _listening: boolean = false;
 
     public constructor() {
 
@@ -77,10 +78,33 @@ export class Mediaq {
       return this;
     }
 
+    public start(): Mediaq {
+
+      if (this._listening) {
+        throw new Error("This Mediaq intance has already started");
+      }
+
+      var length = this._mediaQueryLists.length,
+          i = length;
+
+      while (i--) {
+        this.listenToMediaQueryChanges(this._mediaQueryLists[i]);
+      }
+
+      this._listening = true;
+
+      return this;
+    }
+
     private addMediaQuery(media: string): void {
 
       var mediaQueryList = window.matchMedia(media);
-      this.listenToMediaQueryChanges(mediaQueryList);
+
+      if (this._listening) {
+
+        this.listenToMediaQueryChanges(mediaQueryList);
+      }
+
       this._mediaQueryLists.push(mediaQueryList);
     }
 
