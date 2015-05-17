@@ -21,6 +21,9 @@ export class Mediaq {
     private _mediaQueryLists: Array<MediaQueryList>;
     private _listeners: Array<MediaQueryMatchChangedListener>;
     private _listening: boolean = false;
+    private _mediaQueryListListener: MediaQueryListListener = (mediaQueryList: MediaQueryList) => {
+      this.invokeListeners(mediaQueryList);
+    };
 
     public constructor() {
 
@@ -110,26 +113,25 @@ export class Mediaq {
 
     private listenToMediaQueryChanges(mediaQueryList : MediaQueryList): void {
 
-      var invokeListeners = (media: string, matches: boolean) => {
-        if (this._listeners.length > 0) {
-            length = this._listeners.length;
-            var listener: Function = null,
-                mediaQuery: MediaQuery = new MediaQuery(media),
-                j = length;
+      this.invokeListeners(mediaQueryList);
 
-            while (j--) {
+      mediaQueryList.addListener(this._mediaQueryListListener);
 
-                listener = this._listeners[j];
-
-                listener.call(this, mediaQuery, matches);
-            }
-        }
-      };
-
-      invokeListeners(mediaQueryList.media, mediaQueryList.matches);
-
-      mediaQueryList.addListener(function(event) {
-        invokeListeners(event.media, event.matches);
-      });
     }
+
+    private invokeListeners (mediaQueryList: MediaQueryList): void {
+      if (this._listeners.length > 0) {
+          length = this._listeners.length;
+          var listener: Function = null,
+              mediaQuery: MediaQuery = new MediaQuery(mediaQueryList.media),
+              j = length;
+
+          while (j--) {
+
+              listener = this._listeners[j];
+
+              listener.call(this, mediaQuery, mediaQueryList.matches);
+          }
+      }
+    };
 }
