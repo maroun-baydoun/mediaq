@@ -21,3 +21,13 @@ var mediaq = new Mediaq()
     window.setTimeout(function(){
       mediaq.mediaQuery("only screen and (max-width: 200px)");
     }, 2000);
+
+    /** Stop listening after 10 seconds**/
+    window.setTimeout(function(){
+      mediaq.stop();
+    }, 10000);
+
+    /** Resume listening after 15 seconds**/
+    window.setTimeout(function(){
+      mediaq.start();
+    }, 15000);

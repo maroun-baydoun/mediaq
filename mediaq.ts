@@ -99,6 +99,25 @@ export class Mediaq {
       return this;
     }
 
+    public stop(): Mediaq {
+
+      if (!this._listening) {
+        throw new Error("This Mediaq intance is not started");
+      }
+
+
+      var length = this._mediaQueryLists.length,
+          i = length;
+
+      while (i--) {
+        this._mediaQueryLists[i].removeListener(this._mediaQueryListListener);
+      }
+
+      this._listening = false;
+
+      return this;
+    }
+
     private addMediaQuery(media: string): void {
 
       var mediaQueryList = window.matchMedia(media);

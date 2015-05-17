@@ -16,4 +16,10 @@ define(["require", "exports", "../mediaq"], function (require, exports, mediaq_1
     window.setTimeout(function () {
         mediaq.mediaQuery("only screen and (max-width: 200px)");
     }, 2000);
+    window.setTimeout(function () {
+        mediaq.stop();
+    }, 10000);
+    window.setTimeout(function () {
+        mediaq.start();
+    }, 15000);
 });
