@@ -1,16 +1,16 @@
 
 export class MediaQuery {
 
-    private _value: string;
+    private _media: string;
     private _mediaQueryList: MediaQueryList;
 
-    public constructor(value: string) {
-        this._value = value;
-        this._mediaQueryList = window.matchMedia(value);
+    public constructor(media: string) {
+        this._media = media;
+        this._mediaQueryList = window.matchMedia(media);
     }
 
-    get value(): string {
-        return this._value;
+    get media(): string {
+        return this._media;
     }
 
     get mediaQueryList(): MediaQueryList {
@@ -22,7 +22,7 @@ export class MediaQuery {
     }
 
     public toString(): string {
-      return this._value;
+      return this._media;
     }
 
 };

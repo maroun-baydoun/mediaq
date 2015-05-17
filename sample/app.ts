@@ -8,7 +8,7 @@ var mediaq = new Mediaq()
     .mediaQuery("only screen and (max-width: 500px)")
     .onMediaQueryMatched((mediaQuery: MediaQuery) => {
       var event: HTMLElement = document.createElement("li");
-      event.innerText = mediaQuery.value + " " + (mediaQuery.matched ? "was matched" : "was not matched");
+      event.innerText = mediaQuery.media + " " + (mediaQuery.matched ? "was matched" : "was not matched");
       events.appendChild(event);
     })
     .start();

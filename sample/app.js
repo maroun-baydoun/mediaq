@@ -6,7 +6,7 @@ define(["require", "exports", "../mediaq"], function (require, exports, mediaq_1
         .mediaQuery("only screen and (max-width: 500px)")
         .onMediaQueryMatched(function (mediaQuery) {
         var event = document.createElement("li");
-        event.innerText = mediaQuery.value + " " + (mediaQuery.matched ? "was matched" : "was not matched");
+        event.innerText = mediaQuery.media + " " + (mediaQuery.matched ? "was matched" : "was not matched");
         events.appendChild(event);
     })
         .start();

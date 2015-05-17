@@ -19,7 +19,7 @@ import {Mediaq, MediaQuery} from "mediaq";
 ```typescript
 var mediaq = new Mediaq()
                  .fromStyleSheets()
-                 .mediaQuery(mediaQuery: string)
+                 .mediaQuery(media: string)
                  .onMediaQueryMatched((mediaQuery: MediaQuery, matched: boolean) => { })
                  .start();
 ```
@@ -27,10 +27,11 @@ var mediaq = new Mediaq()
 
 ####Methods
 * ```fromStyleSheets()``` : searches for media queries defined in the stylesheets loaded in the document.
-* ```mediaQuery(mediaQuery: string)``` : adds a media query that was not defined in stylesheets.
+* ```mediaQuery(media: string)``` : adds a media query that was not defined in stylesheets.
 * ```onMediaQueryMatched((mediaQuery: MediaQuery, matched: boolean))``` : adds a listener that will triggered every time a media query is matched.
 * ```start()``` : starts listening to changes in media queries.
 * ```stop()``` : stops listening to changes in media queries.
-* ```mediaQueries()``` : returns the media queries added by ```fromStyleSheets()``` and ```mediaQuery(mediaQuery: string)``` methods.
+* ```mediaQueries()``` : returns the media queries added by ```fromStyleSheets()``` and ```mediaQuery(media: string)``` methods.
+
 ####Example
 See [sample](https://github.com/maroun-baydoun/mediaq/tree/master/sample) directory.
