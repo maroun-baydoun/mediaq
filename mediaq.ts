@@ -2,32 +2,50 @@
 export class MediaQuery {
 
     private _value: string;
+    private _mediaQueryList: MediaQueryList;
 
     public constructor(value: string) {
         this._value = value;
+        this._mediaQueryList = window.matchMedia(value);
     }
 
     get value(): string {
         return this._value;
     }
 
+    get mediaQueryList(): MediaQueryList {
+        return this._mediaQueryList;
+    }
+
+    get matched(): boolean {
+        return this._mediaQueryList.matches;
+    }
+
+    public toString(): string {
+      return this._value;
+    }
+
 };
 
 export interface MediaQueryMatchChangedListener {
-    (mediaQuery: MediaQuery, matched: boolean): void;
+    (mediaQuery: MediaQuery): void;
 }
 
 export class Mediaq {
-    private _mediaQueryLists: Array<MediaQueryList>;
+    private _mediaQueries: collections.Dictionary<string, MediaQuery>;
     private _listeners: Array<MediaQueryMatchChangedListener>;
     private _listening: boolean = false;
     private _mediaQueryListListener: MediaQueryListListener = (mediaQueryList: MediaQueryList) => {
-      this.invokeListeners(mediaQueryList);
+      var mediaQuery: MediaQuery = this._mediaQueries.getValue(mediaQueryList.media);
+
+      if (mediaQuery) {
+        this.invokeListeners(mediaQuery);
+      }
     };
 
     public constructor() {
 
-        this._mediaQueryLists = [];
+        this._mediaQueries = new collections.Dictionary<string, MediaQuery>();
         this._listeners = [];
 
     }
@@ -87,12 +105,9 @@ export class Mediaq {
         throw new Error("This Mediaq intance has already started");
       }
 
-      var length = this._mediaQueryLists.length,
-          i = length;
-
-      while (i--) {
-        this.listenToMediaQueryChanges(this._mediaQueryLists[i]);
-      }
+      this._mediaQueries.forEach((media: string, mediaQuery: MediaQuery) => {
+        this.listenToMediaQueryChanges(mediaQuery);
+      });
 
       this._listening = true;
 
@@ -105,13 +120,9 @@ export class Mediaq {
         throw new Error("This Mediaq intance is not started");
       }
 
-
-      var length = this._mediaQueryLists.length,
-          i = length;
-
-      while (i--) {
-        this._mediaQueryLists[i].removeListener(this._mediaQueryListListener);
-      }
+      this._mediaQueries.forEach((media: string, mediaQuery: MediaQuery) => {
+        mediaQuery.mediaQueryList.removeListener(this._mediaQueryListListener);
+      });
 
       this._listening = false;
 
@@ -120,37 +131,189 @@ export class Mediaq {
 
     private addMediaQuery(media: string): void {
 
-      var mediaQueryList = window.matchMedia(media);
+      var mediaQuery: MediaQuery = new MediaQuery(media);
 
       if (this._listening) {
 
-        this.listenToMediaQueryChanges(mediaQueryList);
+        this.listenToMediaQueryChanges(mediaQuery);
       }
 
-      this._mediaQueryLists.push(mediaQueryList);
+      this._mediaQueries.setValue(media, mediaQuery);
     }
 
-    private listenToMediaQueryChanges(mediaQueryList : MediaQueryList): void {
+    private listenToMediaQueryChanges(mediaQuery : MediaQuery): void {
 
-      this.invokeListeners(mediaQueryList);
+      this.invokeListeners(mediaQuery);
 
-      mediaQueryList.addListener(this._mediaQueryListListener);
+      mediaQuery.mediaQueryList.addListener(this._mediaQueryListListener);
 
     }
 
-    private invokeListeners (mediaQueryList: MediaQueryList): void {
+    private invokeListeners (mediaQuery: MediaQuery): void {
       if (this._listeners.length > 0) {
-          length = this._listeners.length;
-          var listener: Function = null,
-              mediaQuery: MediaQuery = new MediaQuery(mediaQueryList.media),
+
+          var length = this._listeners.length,
+              listener: MediaQueryMatchChangedListener = null,
               j = length;
 
           while (j--) {
 
               listener = this._listeners[j];
 
-              listener.call(this, mediaQuery, mediaQueryList.matches);
+              listener.call(this, mediaQuery);
           }
       }
     };
+}
+
+// From https://github.com/basarat/typescript-collections by Basarat Ali Syed.
+// Licensed under MIT open source license http://opensource.org/licenses/MIT
+module collections {
+    var _hasOwnProperty = Object.prototype.hasOwnProperty,
+        has = function(obj, prop) {
+            return _hasOwnProperty.call(obj, prop);
+        };
+
+    function isString(obj: any): boolean {
+        return Object.prototype.toString.call(obj) === "[object String]";
+    }
+
+    function isUndefined(obj: any): boolean {
+        return (typeof obj) === "undefined";
+    }
+
+    function defaultToString(item: any): string {
+        if (item === null) {
+            return "COLLECTION_NULL";
+        } else if (isUndefined(item)) {
+            return "COLLECTION_UNDEFINED";
+        } else if (isString(item)) {
+            return "$s" + item;
+        } else {
+            return "$o" + item.toString();
+        }
+    }
+
+    interface IDictionaryPair<K, V> {
+        key: K;
+        value: V;
+    }
+
+    export class Dictionary<K, V>{
+
+
+        private table: { [key: string]: IDictionaryPair<K, V> };
+
+        private nElements: number;
+
+        private toStr: (key: K) => string;
+
+        constructor(toStrFunction?: (key: K) => string) {
+            this.table = {};
+            this.nElements = 0;
+            this.toStr = toStrFunction || defaultToString;
+        }
+
+        getValue(key: K): V {
+            var pair: IDictionaryPair<K, V> = this.table["$" + this.toStr(key)];
+            if (isUndefined(pair)) {
+                return undefined;
+            }
+            return pair.value;
+        }
+
+        setValue(key: K, value: V): V {
+
+            if (isUndefined(key) || isUndefined(value)) {
+                return undefined;
+            }
+
+            var ret: V;
+            var k = "$" + this.toStr(key);
+            var previousElement: IDictionaryPair<K, V> = this.table[k];
+            if (isUndefined(previousElement)) {
+                this.nElements++;
+                ret = undefined;
+            } else {
+                ret = previousElement.value;
+            }
+            this.table[k] = {
+                key: key,
+                value: value
+            };
+            return ret;
+        }
+
+        remove(key: K): V {
+            var k = "$" + this.toStr(key);
+            var previousElement: IDictionaryPair<K, V> = this.table[k];
+            if (!isUndefined(previousElement)) {
+                delete this.table[k];
+                this.nElements--;
+                return previousElement.value;
+            }
+            return undefined;
+        }
+
+        keys(): K[] {
+            var array: K[] = [];
+            for (var name in this.table) {
+                if (has(this.table, name)) {
+                    var pair: IDictionaryPair<K, V> = this.table[name];
+                    array.push(pair.key);
+                }
+            }
+            return array;
+        }
+
+        values(): V[] {
+            var array: V[] = [];
+            for (var name in this.table) {
+                if (has(this.table, name)) {
+                    var pair: IDictionaryPair<K, V> = this.table[name];
+                    array.push(pair.value);
+                }
+            }
+            return array;
+        }
+
+        forEach(callback: (key: K, value: V) => any): void {
+            for (var name in this.table) {
+                if (has(this.table, name)) {
+                    var pair: IDictionaryPair<K, V> = this.table[name];
+                    var ret = callback(pair.key, pair.value);
+                    if (ret === false) {
+                        return;
+                    }
+                }
+            }
+        }
+
+        containsKey(key: K): boolean {
+            return !isUndefined(this.getValue(key));
+        }
+
+
+        clear() {
+
+            this.table = {};
+            this.nElements = 0;
+        }
+
+        size(): number {
+            return this.nElements;
+        }
+
+        isEmpty(): boolean {
+            return this.nElements <= 0;
+        }
+
+        toString(): string {
+            var toret = "{";
+            this.forEach((k, v) => {
+                toret = toret + "\n\t" + k.toString() + " : " + v.toString();
+            });
+            return toret + "\n}";
+        }
+    }
 }
