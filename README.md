@@ -20,7 +20,7 @@ import {Mediaq, MediaQuery} from "mediaq";
 var mediaq = new Mediaq()
                  .fromStyleSheets()
                  .mediaQuery(media: string)
-                 .onMediaQueryMatched((mediaQuery: MediaQuery) => { })
+                 .onMediaQueryMatchedChanged((mediaQuery: MediaQuery) => { })
                  .start();
 ```
 
@@ -28,7 +28,7 @@ var mediaq = new Mediaq()
 ####Methods
 * ```fromStyleSheets()``` : searches for media queries defined in the stylesheets loaded in the document.
 * ```mediaQuery(media: string)``` : adds a media query that was not defined in stylesheets.
-* ```onMediaQueryMatched((mediaQuery: MediaQuery))``` : adds a listener that will triggered every time a media query is matched.
+* ```onMediaQueryMatchedChanged((mediaQuery: MediaQuery))``` : adds a listener that will triggered every time a media query is matched or stops being matched.
 * ```start()``` : starts listening to changes in media queries.
 * ```stop()``` : stops listening to changes in media queries.
 * ```mediaQueries()``` : returns the media queries added by ```fromStyleSheets()``` and ```mediaQuery(media: string)``` methods.

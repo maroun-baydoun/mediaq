@@ -92,7 +92,7 @@ export class Mediaq {
     }
 
 
-    public onMediaQueryMatched(listener: MediaQueryMatchChangedListener): Mediaq {
+    public onMediaQueryMatchedChanged(listener: MediaQueryMatchChangedListener): Mediaq {
 
       this._listeners.push(listener);
 
