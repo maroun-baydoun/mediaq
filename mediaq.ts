@@ -22,7 +22,7 @@ export class MediaQuery {
     }
 
     public toString(): string {
-      return this._media;
+        return this._media;
     }
 
 };
@@ -36,11 +36,11 @@ export class Mediaq {
     private _listeners: Array<MediaQueryMatchChangedListener>;
     private _listening: boolean = false;
     private _mediaQueryListListener: MediaQueryListListener = (mediaQueryList: MediaQueryList) => {
-      var mediaQuery: MediaQuery = this._mediaQueries.getValue(mediaQueryList.media);
+        var mediaQuery: MediaQuery = this._mediaQueries.getValue(mediaQueryList.media);
 
-      if (mediaQuery) {
-        this.invokeListeners(mediaQuery);
-      }
+        if (mediaQuery) {
+            this.invokeListeners(mediaQuery);
+        }
     };
 
     public constructor() {
@@ -86,88 +86,88 @@ export class Mediaq {
 
     public mediaQuery(media: string): Mediaq {
 
-      this.addMediaQuery(media);
+        this.addMediaQuery(media);
 
-      return this;
+        return this;
     }
 
 
     public onMediaQueryMatchedChanged(listener: MediaQueryMatchChangedListener): Mediaq {
 
-      this._listeners.push(listener);
+        this._listeners.push(listener);
 
-      return this;
+        return this;
     }
 
     public start(): Mediaq {
 
-      if (this._listening) {
-        throw new Error("This Mediaq intance has already started");
-      }
+        if (this._listening) {
+            throw new Error("This Mediaq intance has already started");
+        }
 
-      this._mediaQueries.forEach((media: string, mediaQuery: MediaQuery) => {
-        this.listenToMediaQueryChanges(mediaQuery);
-      });
+        this._mediaQueries.forEach((media: string, mediaQuery: MediaQuery) => {
+            this.listenToMediaQueryChanges(mediaQuery);
+        });
 
-      this._listening = true;
+        this._listening = true;
 
-      return this;
+        return this;
     }
 
     public stop(): Mediaq {
 
-      if (!this._listening) {
-        throw new Error("This Mediaq intance is not started");
-      }
+        if (!this._listening) {
+            throw new Error("This Mediaq intance is not started");
+        }
 
-      this._mediaQueries.forEach((media: string, mediaQuery: MediaQuery) => {
-        mediaQuery.mediaQueryList.removeListener(this._mediaQueryListListener);
-      });
+        this._mediaQueries.forEach((media: string, mediaQuery: MediaQuery) => {
+            mediaQuery.mediaQueryList.removeListener(this._mediaQueryListListener);
+        });
 
-      this._listening = false;
+        this._listening = false;
 
-      return this;
+        return this;
     }
 
     public mediaQueries(): Array<MediaQuery> {
 
-      return this._mediaQueries.values();
+        return this._mediaQueries.values();
     }
 
     private addMediaQuery(media: string): void {
 
-      var mediaQuery: MediaQuery = new MediaQuery(media);
+        var mediaQuery: MediaQuery = new MediaQuery(media);
 
-      if (this._listening) {
+        if (this._listening) {
 
-        this.listenToMediaQueryChanges(mediaQuery);
-      }
+            this.listenToMediaQueryChanges(mediaQuery);
+        }
 
-      this._mediaQueries.setValue(media, mediaQuery);
+        this._mediaQueries.setValue(media, mediaQuery);
     }
 
-    private listenToMediaQueryChanges(mediaQuery : MediaQuery): void {
+    private listenToMediaQueryChanges(mediaQuery: MediaQuery): void {
 
-      this.invokeListeners(mediaQuery);
+        this.invokeListeners(mediaQuery);
 
-      mediaQuery.mediaQueryList.addListener(this._mediaQueryListListener);
+        mediaQuery.mediaQueryList.addListener(this._mediaQueryListListener);
 
     }
 
-    private invokeListeners (mediaQuery: MediaQuery): void {
-      if (this._listeners.length > 0) {
+    private invokeListeners(mediaQuery: MediaQuery): void {
+        if (this._listeners.length > 0) {
 
-          var length = this._listeners.length,
-              listener: MediaQueryMatchChangedListener = null,
-              j = length;
+            var length = this._listeners.length,
+                listener: MediaQueryMatchChangedListener = null,
+                j = length;
 
-          while (j--) {
+            while (j--) {
 
-              listener = this._listeners[j];
+                listener = this._listeners[j];
 
-              listener.call(this, mediaQuery);
-          }
-      }
+                listener.call(this, mediaQuery);
+            }
+        }
     };
 }
 
