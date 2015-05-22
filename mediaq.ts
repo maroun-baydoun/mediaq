@@ -50,6 +50,10 @@ export class Mediaq {
 
     }
 
+    get listening(): boolean {
+
+        return this._listening;
+    }
 
     public fromStyleSheets(): Mediaq {
 
