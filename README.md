@@ -28,7 +28,8 @@ var mediaq = new Mediaq()
 ####Methods
 * ```fromStyleSheets()``` : searches for media queries defined in the stylesheets loaded in the document.
 * ```mediaQuery(media: string)``` : adds a media query that was not defined in stylesheets.
-* ```onMediaQueryMatchedChanged((mediaQuery: MediaQuery))``` : adds a listener that will triggered every time a media query is matched or stops being matched.
+* ```onMediaQueryMatchedChanged(listener: MediaQueryMatchChangedListener)``` : adds a listener that will triggered every time a media query is matched or stops being matched.
+* ```offMediaQueryMatchedChanged(listener: MediaQueryMatchChangedListener)``` : removes a listener that was added by ```onMediaQueryMatchedChanged(listener: MediaQueryMatchChangedListener)```.
 * ```start()``` : starts listening to changes in media queries.
 * ```stop()``` : stops listening to changes in media queries.
 * ```mediaQueries()``` : returns the media queries added by ```fromStyleSheets()``` and ```mediaQuery(media: string)``` methods.

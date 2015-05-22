@@ -103,6 +103,21 @@ export class Mediaq {
         return this;
     }
 
+    public offMediaQueryMatchedChanged(listener: MediaQueryMatchChangedListener): Mediaq {
+
+        var length: number = this._listeners.length,
+            i: number = length;
+
+        while (i--) {
+            if (this._listeners[i] === listener) {
+                this._listeners.splice(i, 1);
+                break;
+            }
+        }
+
+        return this;
+    }
+
     public start(): Mediaq {
 
         if (this._listening) {
