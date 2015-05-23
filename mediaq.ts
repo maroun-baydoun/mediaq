@@ -71,15 +71,19 @@ export class Mediaq {
 
             sheet = <CSSStyleSheet>sheets[i];
             rules = sheet.cssRules;
-            j = rules.length;
 
-            while (j--) {
+            if (rules) {
 
-                rule = rules[j];
+                j = rules.length;
 
-                if (rule.constructor === CSSMediaRule) {
-                    mediaList = (<CSSMediaRule>rule).media;
-                    this.addMediaQuery(mediaList.mediaText);
+                while (j--) {
+
+                    rule = rules[j];
+
+                    if (rule.constructor === CSSMediaRule) {
+                        mediaList = (<CSSMediaRule>rule).media;
+                        this.addMediaQuery(mediaList.mediaText);
+                    }
                 }
             }
 
