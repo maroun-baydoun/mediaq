@@ -1,0 +1,36 @@
+{
+  "name": "mediaq",
+  "version": "1.0.0",
+  "description": "Listen to media queries updates in TypeScript",
+  "main": "mediaq.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "tsc ",
+    "watch": "tsc -w",
+    "test": "qunit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maroun-baydoun/mediaq.git"
+  },
+  "keywords": [
+    "typescript",
+    "mediaquery",
+    "responsive"
+  ],
+  "author": "Maroun Baydoun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maroun-baydoun/mediaq/issues"
+  },
+  "homepage": "https://github.com/maroun-baydoun/mediaq#readme",
+  "devDependencies": {
+    "qunitjs": "^2.3.2",
+    "typescript": "^2.3.3"
+  },
+  "dependencies": {
+    "requirejs": "^2.3.3"
+  }
+}

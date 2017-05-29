@@ -25,7 +25,7 @@ export class MediaQuery {
         return this._media;
     }
 
-};
+}
 
 export interface MediaQueryMatchChangedListener {
     (mediaQuery: MediaQuery): void;
@@ -36,12 +36,12 @@ export class Mediaq {
     private _listeners: Array<MediaQueryMatchChangedListener>;
     private _listening: boolean = false;
     private _mediaQueryListListener: MediaQueryListListener = (mediaQueryList: MediaQueryList) => {
-        var mediaQuery: MediaQuery = this._mediaQueries.getValue(mediaQueryList.media);
+        let mediaQuery: MediaQuery | undefined = this._mediaQueries.getValue(mediaQueryList.media);
 
         if (mediaQuery) {
             this.invokeListeners(mediaQuery);
         }
-    };
+    }
 
     public constructor() {
 
@@ -57,13 +57,13 @@ export class Mediaq {
 
     public fromStyleSheets(): Mediaq {
 
-        var sheets: StyleSheetList = document.styleSheets,
+        let sheets: StyleSheetList = document.styleSheets,
             length: number = sheets.length,
-            sheet: CSSStyleSheet = null,
-            rules: CSSRuleList = null,
-            rule: CSSRule = null,
-            mediaList: MediaList = null,
-            mediaQueryList: MediaQueryList = null,
+            sheet: CSSStyleSheet,
+            rules: CSSRuleList,
+            rule: CSSRule,
+            mediaList: MediaList,
+            mediaQueryList: MediaQueryList,
             i: number = length,
             j: number = 0;
 
@@ -109,7 +109,7 @@ export class Mediaq {
 
     public offMediaQueryMatchedChanged(listener: MediaQueryMatchChangedListener): Mediaq {
 
-        var length: number = this._listeners.length,
+        let length: number = this._listeners.length,
             i: number = length;
 
         while (i--) {
@@ -159,7 +159,7 @@ export class Mediaq {
 
     private addMediaQuery(media: string): void {
 
-        var mediaQuery: MediaQuery = new MediaQuery(media);
+        let mediaQuery = new MediaQuery(media);
 
         if (this._listening) {
 
@@ -180,8 +180,8 @@ export class Mediaq {
     private invokeListeners(mediaQuery: MediaQuery): void {
         if (this._listeners.length > 0) {
 
-            var length = this._listeners.length,
-                listener: MediaQueryMatchChangedListener = null,
+            let length = this._listeners.length,
+                listener: MediaQueryMatchChangedListener,
                 j = length;
 
             while (j--) {
@@ -191,13 +191,13 @@ export class Mediaq {
                 listener.call(this, mediaQuery);
             }
         }
-    };
+    }
 }
 
 // From https://github.com/basarat/typescript-collections by Basarat Ali Syed.
 // Licensed under MIT open source license http://opensource.org/licenses/MIT
 module collections {
-    var _hasOwnProperty = Object.prototype.hasOwnProperty,
+    let _hasOwnProperty = Object.prototype.hasOwnProperty,
         has = function(obj, prop) {
             return _hasOwnProperty.call(obj, prop);
         };
@@ -242,23 +242,23 @@ module collections {
             this.toStr = toStrFunction || defaultToString;
         }
 
-        getValue(key: K): V {
-            var pair: IDictionaryPair<K, V> = this.table["$" + this.toStr(key)];
+        getValue(key: K): V | undefined {
+            const pair: IDictionaryPair<K, V> = this.table["$" + this.toStr(key)];
             if (isUndefined(pair)) {
                 return undefined;
             }
             return pair.value;
         }
 
-        setValue(key: K, value: V): V {
+        setValue(key: K, value: V): V | undefined {
 
             if (isUndefined(key) || isUndefined(value)) {
                 return undefined;
             }
 
-            var ret: V;
-            var k = "$" + this.toStr(key);
-            var previousElement: IDictionaryPair<K, V> = this.table[k];
+            let ret: V | undefined;
+            const k = "$" + this.toStr(key);
+            let previousElement: IDictionaryPair<K, V> = this.table[k];
             if (isUndefined(previousElement)) {
                 this.nElements++;
                 ret = undefined;
@@ -272,9 +272,9 @@ module collections {
             return ret;
         }
 
-        remove(key: K): V {
-            var k = "$" + this.toStr(key);
-            var previousElement: IDictionaryPair<K, V> = this.table[k];
+        remove(key: K): V | undefined {
+            const k = "$" + this.toStr(key);
+            let previousElement: IDictionaryPair<K, V> = this.table[k];
             if (!isUndefined(previousElement)) {
                 delete this.table[k];
                 this.nElements--;
@@ -284,10 +284,10 @@ module collections {
         }
 
         keys(): K[] {
-            var array: K[] = [];
-            for (var name in this.table) {
+            let array: K[] = [];
+            for (let name in this.table) {
                 if (has(this.table, name)) {
-                    var pair: IDictionaryPair<K, V> = this.table[name];
+                    let pair: IDictionaryPair<K, V> = this.table[name];
                     array.push(pair.key);
                 }
             }
@@ -295,10 +295,10 @@ module collections {
         }
 
         values(): V[] {
-            var array: V[] = [];
-            for (var name in this.table) {
+            let array: V[] = [];
+            for (let name in this.table) {
                 if (has(this.table, name)) {
-                    var pair: IDictionaryPair<K, V> = this.table[name];
+                    let pair: IDictionaryPair<K, V> = this.table[name];
                     array.push(pair.value);
                 }
             }
@@ -306,10 +306,10 @@ module collections {
         }
 
         forEach(callback: (key: K, value: V) => any): void {
-            for (var name in this.table) {
+            for (let name in this.table) {
                 if (has(this.table, name)) {
-                    var pair: IDictionaryPair<K, V> = this.table[name];
-                    var ret = callback(pair.key, pair.value);
+                    let pair: IDictionaryPair<K, V> = this.table[name];
+                    let ret = callback(pair.key, pair.value);
                     if (ret === false) {
                         return;
                     }
@@ -337,7 +337,7 @@ module collections {
         }
 
         toString(): string {
-            var toret = "{";
+            let toret = "{";
             this.forEach((k, v) => {
                 toret = toret + "\n\t" + k.toString() + " : " + v.toString();
             });
