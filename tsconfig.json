@@ -6,7 +6,8 @@
         "noImplicitAny": false,
         "removeComments": true,
         "noLib": false,
-        "strict": true
+        "strict": true,
+        "outDir": "./dist"
     },
     "files": [
         "./mediaq.ts",
