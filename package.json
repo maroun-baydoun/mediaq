@@ -2,10 +2,8 @@
   "name": "mediaq",
   "version": "1.0.0",
   "description": "Listen to media queries updates in TypeScript",
-  "main": "mediaq.js",
-  "directories": {
-    "test": "test"
-  },
+  "main": "./dist/mediaq.js",
+  "types": "./dist/mediaq.d.ts",
   "scripts": {
     "build": "tsc ",
     "watch": "tsc -w"
