@@ -1,4 +1,3 @@
-"use strict";
 import {Mediaq, MediaQuery} from "../mediaq";
 
 let mediaQueriesList: HTMLElement | null = document.getElementById("mediaQueries");

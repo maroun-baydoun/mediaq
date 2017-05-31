@@ -1,4 +1,4 @@
-///<reference path="./qunit.d.ts"/>
+
 import {Mediaq, MediaQuery} from "../mediaq";
 
 

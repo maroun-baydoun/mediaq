@@ -8,14 +8,9 @@
         "noLib": false,
         "strict": true
     },
-    "filesGlob": [
-        "./**/*.ts",
-        "!./node_modules/**/*.ts"
-    ],
     "files": [
         "./mediaq.ts",
         "./sample/app.ts",
-        "./test/qunit.d.ts",
         "./test/test.ts"
     ]
 }

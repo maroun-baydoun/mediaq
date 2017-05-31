@@ -8,8 +8,7 @@
   },
   "scripts": {
     "build": "tsc ",
-    "watch": "tsc -w",
-    "test": "qunit"
+    "watch": "tsc -w"
   },
   "repository": {
     "type": "git",
@@ -27,6 +26,8 @@
   },
   "homepage": "https://github.com/maroun-baydoun/mediaq#readme",
   "devDependencies": {
+    "@types/node": "^7.0.22",
+    "@types/qunit": "^2.0.31",
     "qunitjs": "^2.3.2",
     "typescript": "^2.3.3"
   },
