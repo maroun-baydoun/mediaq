@@ -2,8 +2,8 @@
 !*.d.ts
 test/**/*
 sample/**/*
-dist/test/**/*
-dist/sample/**/*
+dist/web/**/*
+dist/web/**/*.d.ts
 tslint.json
 tsconfig.json
 webpack.config.js

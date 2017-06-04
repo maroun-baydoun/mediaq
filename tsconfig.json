@@ -7,11 +7,10 @@
         "noImplicitAny": false,
         "removeComments": true,
         "noLib": false,
-        "strict": true
+        "strict": true,
+        "outDir": "./dist"
     },
     "files": [
-        "./mediaq.ts",
-        "./sample/app.ts",
-        "./test/test.ts"
+        "./mediaq.ts"
     ]
 }
