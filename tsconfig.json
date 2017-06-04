@@ -1,13 +1,13 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "module": "amd",
+        "module": "commonjs",
+        "moduleResolution": "node",
         "declaration": true,
         "noImplicitAny": false,
         "removeComments": true,
         "noLib": false,
-        "strict": true,
-        "outDir": "./dist"
+        "strict": true
     },
     "files": [
         "./mediaq.ts",

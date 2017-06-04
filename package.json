@@ -30,7 +30,8 @@
     "@types/node": "^7.0.22",
     "@types/qunit": "^2.0.31",
     "qunitjs": "^2.3.2",
+    "ts-loader": "^2.1.0",
     "typescript": "^2.3.3",
-    "requirejs": "^2.3.3"
+    "webpack": "^2.6.1"
   }
 }

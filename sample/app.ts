@@ -1,12 +1,11 @@
 import {Mediaq, MediaQuery} from "../mediaq";
 
-let mediaQueriesList: HTMLElement | null = document.getElementById("mediaQueries");
-
 let mediaq = new Mediaq()
   .fromStyleSheets()
   .mediaQuery("only screen and (max-width: 500px)")
   .onMediaQueryMatchedChanged((mediaQuery: MediaQuery) => {
-    let mediaQueryItem: HTMLElement = <HTMLElement>document.querySelector("li[data-media='" + mediaQuery + "']");
+    let mediaQueriesList: HTMLElement | null = document.getElementById("mediaQueries");
+    let mediaQueryItem: HTMLElement | null = <HTMLElement>document.querySelector("li[data-media='" + mediaQuery + "']");
     if (!mediaQueryItem) {
       mediaQueryItem = document.createElement("li");
       mediaQueryItem.innerText = mediaQuery.media;
@@ -27,20 +26,20 @@ let mediaq = new Mediaq()
   .start();
 
 /** Media queries added subsequently will trigger listeners as well **/
-window.setTimeout(function() {
+window.setTimeout(() => {
   mediaq.mediaQuery("only screen and (min-width: 500px)");
 }, 1000);
 
-window.setTimeout(function() {
+window.setTimeout(() => {
   mediaq.mediaQuery("only screen and (max-width: 200px)");
 }, 2000);
 
 /** Stop listening after 10 seconds**/
-window.setTimeout(function() {
+window.setTimeout(() => {
   mediaq.stop();
 }, 10000);
 
 /** Resume listening after 15 seconds**/
-window.setTimeout(function() {
+window.setTimeout(() => {
   mediaq.start();
 }, 15000);

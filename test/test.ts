@@ -1,8 +1,7 @@
 
 import {Mediaq, MediaQuery} from "../mediaq";
 
-
-QUnit.test("mediaq fromStyleSheets", function(assert) {
+QUnit.test("mediaq fromStyleSheets", (assert) => {
 
   let mediaq = new Mediaq().fromStyleSheets(),
     mediaQuery1 = new MediaQuery("only screen and (max-width: 767px)"),
@@ -14,7 +13,7 @@ QUnit.test("mediaq fromStyleSheets", function(assert) {
 });
 
 
-QUnit.test("mediaq mediaQuery", function(assert) {
+QUnit.test("mediaq mediaQuery", (assert) => {
 
   let mediaQuery1 = new MediaQuery("only screen and (max-width: 500px)"),
     mediaQuery2 = new MediaQuery("only screen and (min-width: 300px)"),
@@ -26,7 +25,7 @@ QUnit.test("mediaq mediaQuery", function(assert) {
 
 });
 
-QUnit.test("mediaq start", function(assert) {
+QUnit.test("mediaq start", (assert) => {
 
   let mediaq = new Mediaq();
 
@@ -45,7 +44,7 @@ QUnit.test("mediaq start", function(assert) {
 });
 
 
-QUnit.test("mediaq stop", function(assert) {
+QUnit.test("mediaq stop", (assert) => {
 
   let mediaq = new Mediaq().fromStyleSheets();
 
