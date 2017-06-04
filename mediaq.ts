@@ -31,12 +31,13 @@ export interface MediaQueryMatchChangedListener {
     (mediaQuery: MediaQuery): void;
 }
 
+
 export class Mediaq {
-    private _mediaQueries: collections.Dictionary<string, MediaQuery>;
+    private _mediaQueries: {[id: string]: MediaQuery};
     private _listeners: Array<MediaQueryMatchChangedListener>;
     private _listening: boolean = false;
     private _mediaQueryListListener: MediaQueryListListener = (mediaQueryList: MediaQueryList) => {
-        let mediaQuery: MediaQuery | undefined = this._mediaQueries.getValue(mediaQueryList.media);
+        let mediaQuery: MediaQuery | undefined = this._mediaQueries[mediaQueryList.media];
 
         if (mediaQuery) {
             this.invokeListeners(mediaQuery);
@@ -45,7 +46,7 @@ export class Mediaq {
 
     public constructor() {
 
-        this._mediaQueries = new collections.Dictionary<string, MediaQuery>();
+        this._mediaQueries = {};
         this._listeners = [];
 
     }
@@ -124,13 +125,19 @@ export class Mediaq {
 
     public start(): Mediaq {
 
+        let media: string,
+            mediaQuery: MediaQuery;
+
         if (this._listening) {
             throw new Error("This Mediaq intance has already started");
         }
 
-        this._mediaQueries.forEach((media: string, mediaQuery: MediaQuery) => {
+        for (media in this._mediaQueries) {
+          if (this.hasMediaQuery(media)) {
+            mediaQuery = this._mediaQueries[media];
             this.listenToMediaQueryChanges(mediaQuery);
-        });
+          }
+        }
 
         this._listening = true;
 
@@ -139,13 +146,19 @@ export class Mediaq {
 
     public stop(): Mediaq {
 
+      let media: string,
+          mediaQuery: MediaQuery;
+
         if (!this._listening) {
             throw new Error("This Mediaq intance is not started");
         }
 
-        this._mediaQueries.forEach((media: string, mediaQuery: MediaQuery) => {
+        for (media in this._mediaQueries) {
+          if (this.hasMediaQuery(media)) {
+            mediaQuery = this._mediaQueries[media];
             mediaQuery.mediaQueryList.removeListener(this._mediaQueryListListener);
-        });
+          }
+        }
 
         this._listening = false;
 
@@ -153,8 +166,16 @@ export class Mediaq {
     }
 
     public mediaQueries(): Array<MediaQuery> {
+        let mediaQueries = new Array<MediaQuery>(),
+            media: string;
 
-        return this._mediaQueries.values();
+        for (media in this._mediaQueries) {
+          if (this.hasMediaQuery(media)) {
+                mediaQueries.push(this._mediaQueries[media]);
+            }
+          }
+
+        return mediaQueries;
     }
 
     private addMediaQuery(media: string): void {
@@ -166,7 +187,7 @@ export class Mediaq {
             this.listenToMediaQueryChanges(mediaQuery);
         }
 
-        this._mediaQueries.setValue(media, mediaQuery);
+        this._mediaQueries[media] = mediaQuery;
     }
 
     private listenToMediaQueryChanges(mediaQuery: MediaQuery): void {
@@ -192,156 +213,8 @@ export class Mediaq {
             }
         }
     }
-}
 
-// From https://github.com/basarat/typescript-collections by Basarat Ali Syed.
-// Licensed under MIT open source license http://opensource.org/licenses/MIT
-module collections {
-    let _hasOwnProperty = Object.prototype.hasOwnProperty,
-        has = function(obj, prop) {
-            return _hasOwnProperty.call(obj, prop);
-        };
-
-    function isString(obj: any): boolean {
-        return Object.prototype.toString.call(obj) === "[object String]";
-    }
-
-    function isUndefined(obj: any): boolean {
-        return (typeof obj) === "undefined";
-    }
-
-    function defaultToString(item: any): string {
-        if (item === null) {
-            return "COLLECTION_NULL";
-        } else if (isUndefined(item)) {
-            return "COLLECTION_UNDEFINED";
-        } else if (isString(item)) {
-            return "$s" + item;
-        } else {
-            return "$o" + item.toString();
-        }
-    }
-
-    interface IDictionaryPair<K, V> {
-        key: K;
-        value: V;
-    }
-
-    export class Dictionary<K, V>{
-
-
-        private table: { [key: string]: IDictionaryPair<K, V> };
-
-        private nElements: number;
-
-        private toStr: (key: K) => string;
-
-        constructor(toStrFunction?: (key: K) => string) {
-            this.table = {};
-            this.nElements = 0;
-            this.toStr = toStrFunction || defaultToString;
-        }
-
-        getValue(key: K): V | undefined {
-            const pair: IDictionaryPair<K, V> = this.table["$" + this.toStr(key)];
-            if (isUndefined(pair)) {
-                return undefined;
-            }
-            return pair.value;
-        }
-
-        setValue(key: K, value: V): V | undefined {
-
-            if (isUndefined(key) || isUndefined(value)) {
-                return undefined;
-            }
-
-            let ret: V | undefined;
-            const k = "$" + this.toStr(key);
-            let previousElement: IDictionaryPair<K, V> = this.table[k];
-            if (isUndefined(previousElement)) {
-                this.nElements++;
-                ret = undefined;
-            } else {
-                ret = previousElement.value;
-            }
-            this.table[k] = {
-                key: key,
-                value: value
-            };
-            return ret;
-        }
-
-        remove(key: K): V | undefined {
-            const k = "$" + this.toStr(key);
-            let previousElement: IDictionaryPair<K, V> = this.table[k];
-            if (!isUndefined(previousElement)) {
-                delete this.table[k];
-                this.nElements--;
-                return previousElement.value;
-            }
-            return undefined;
-        }
-
-        keys(): K[] {
-            let array: K[] = [];
-            for (let name in this.table) {
-                if (has(this.table, name)) {
-                    let pair: IDictionaryPair<K, V> = this.table[name];
-                    array.push(pair.key);
-                }
-            }
-            return array;
-        }
-
-        values(): V[] {
-            let array: V[] = [];
-            for (let name in this.table) {
-                if (has(this.table, name)) {
-                    let pair: IDictionaryPair<K, V> = this.table[name];
-                    array.push(pair.value);
-                }
-            }
-            return array;
-        }
-
-        forEach(callback: (key: K, value: V) => any): void {
-            for (let name in this.table) {
-                if (has(this.table, name)) {
-                    let pair: IDictionaryPair<K, V> = this.table[name];
-                    let ret = callback(pair.key, pair.value);
-                    if (ret === false) {
-                        return;
-                    }
-                }
-            }
-        }
-
-        containsKey(key: K): boolean {
-            return !isUndefined(this.getValue(key));
-        }
-
-
-        clear() {
-
-            this.table = {};
-            this.nElements = 0;
-        }
-
-        size(): number {
-            return this.nElements;
-        }
-
-        isEmpty(): boolean {
-            return this.nElements <= 0;
-        }
-
-        toString(): string {
-            let toret = "{";
-            this.forEach((k, v) => {
-                toret = toret + "\n\t" + k.toString() + " : " + v.toString();
-            });
-            return toret + "\n}";
-        }
-    }
+  private hasMediaQuery(media: string): boolean {
+    return Object.prototype.hasOwnProperty.call(this._mediaQueries, media);
+  }
 }
