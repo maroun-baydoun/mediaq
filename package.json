@@ -17,7 +17,10 @@
     "mediaquery",
     "responsive"
   ],
-  "author": "Maroun Baydoun",
+  "author": {
+    "name": "Maroun Baydoun",
+    "url": "http://www.maroun-baydoun.com/"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/maroun-baydoun/mediaq/issues"

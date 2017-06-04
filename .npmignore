@@ -1,0 +1,8 @@
+*.ts
+!*.d.ts
+test/**/*
+sample/**/*
+dist/test/**/*
+dist/sample/**/*
+tslint.json
+tsconfig.json
