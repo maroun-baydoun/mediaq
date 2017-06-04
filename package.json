@@ -5,8 +5,8 @@
   "main": "./dist/mediaq.js",
   "types": "./dist/mediaq.d.ts",
   "scripts": {
-    "build": "tsc ",
-    "watch": "tsc -w"
+    "build": "webpack ",
+    "watch": "webpack -w"
   },
   "repository": {
     "type": "git",
