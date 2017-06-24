@@ -3,31 +3,48 @@ import {Mediaq, MediaQuery} from "../mediaq";
 
 QUnit.test("mediaq fromStyleSheets", (assert) => {
 
-  let mediaq = new Mediaq().fromStyleSheets(),
+  const mediaq = new Mediaq().fromStyleSheets(),
     mediaQuery1 = new MediaQuery("only screen and (max-width: 767px)"),
     mediaQuery2 = new MediaQuery("only screen and (min-width: 1000px)");
 
+  assert.propEqual(mediaq.mediaQueries(), [mediaQuery2, mediaQuery1], "2 media queries read from stylesheets");
 
-  assert.propEqual(mediaq.mediaQueries(), [mediaQuery2, mediaQuery1], "Media queries read from stylesheets");
+});
+
+QUnit.test("mediaq fromStyleSheets with matching href regex", (assert) => {
+
+  const mediaq = new Mediaq().fromStyleSheets(/style.css/),
+    mediaQuery1 = new MediaQuery("only screen and (max-width: 767px)"),
+    mediaQuery2 = new MediaQuery("only screen and (min-width: 1000px)");
+
+  assert.propEqual(mediaq.mediaQueries(), [mediaQuery2, mediaQuery1], "2 media queries read from stylesheets");
+
+});
+
+QUnit.test("mediaq fromStyleSheets with non-matching href regex", (assert) => {
+
+  const mediaq = new Mediaq().fromStyleSheets(/other-style.css/);
+
+  assert.equal(mediaq.mediaQueries().length, 0, "No media queries read from stylesheets");
 
 });
 
 
 QUnit.test("mediaq mediaQuery", (assert) => {
 
-  let mediaQuery1 = new MediaQuery("only screen and (max-width: 500px)"),
+  const mediaQuery1 = new MediaQuery("only screen and (max-width: 500px)"),
     mediaQuery2 = new MediaQuery("only screen and (min-width: 300px)"),
     mediaq = new Mediaq().mediaQuery("only screen and (max-width: 500px)")
       .mediaQuery("only screen and (min-width: 300px)");
 
-  assert.propEqual(mediaq.mediaQueries(), [mediaQuery1, mediaQuery2], "Media queries added");
+  assert.propEqual(mediaq.mediaQueries(), [mediaQuery1, mediaQuery2], "2 media queries added");
 
 
 });
 
 QUnit.test("mediaq start", (assert) => {
 
-  let mediaq = new Mediaq();
+  const mediaq = new Mediaq();
 
   assert.equal(mediaq.listening, false, "Mediaq is not listening yet");
 
@@ -46,7 +63,7 @@ QUnit.test("mediaq start", (assert) => {
 
 QUnit.test("mediaq stop", (assert) => {
 
-  let mediaq = new Mediaq().fromStyleSheets();
+  const mediaq = new Mediaq().fromStyleSheets();
 
   assert.throws(
     () => { mediaq.stop(); },

@@ -4,7 +4,6 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "declaration": true,
-        "noImplicitAny": false,
         "removeComments": true,
         "noLib": false,
         "strict": true,

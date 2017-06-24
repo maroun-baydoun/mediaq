@@ -27,9 +27,7 @@ export class MediaQuery {
 
 }
 
-export interface MediaQueryMatchChangedListener {
-    (mediaQuery: MediaQuery): void;
-}
+export type MediaQueryMatchChangedListener = (mediaQuery: MediaQuery) => void;
 
 
 export class Mediaq {
@@ -56,7 +54,7 @@ export class Mediaq {
         return this._listening;
     }
 
-    public fromStyleSheets(): Mediaq {
+    public fromStyleSheets(href?: RegExp): Mediaq {
 
         let sheets: StyleSheetList = document.styleSheets,
             length: number = sheets.length,
@@ -65,12 +63,20 @@ export class Mediaq {
             rule: CSSRule,
             mediaList: MediaList,
             mediaQueryList: MediaQueryList,
+            keep: boolean = false,
             i: number = length,
             j: number = 0;
 
         while (i--) {
 
             sheet = <CSSStyleSheet>sheets[i];
+
+            keep = !href || (href.test(sheet.href));
+
+            if (!keep) {
+              continue;
+            }
+
             rules = sheet.cssRules;
 
             if (rules) {
