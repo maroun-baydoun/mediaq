@@ -2,10 +2,12 @@
 export class MediaQuery {
 
     private _media: string;
+    private _name?: string;
     private _mediaQueryList: MediaQueryList;
 
-    public constructor(media: string) {
+    public constructor(media: string, name?: string) {
         this._media = media;
+        this._name = name;
         this._mediaQueryList = window.matchMedia(media);
     }
 
@@ -19,6 +21,10 @@ export class MediaQuery {
 
     get matched(): boolean {
         return this._mediaQueryList.matches;
+    }
+
+    get name(): string | undefined  {
+        return this._name;
     }
 
     public toString(): string {
@@ -99,9 +105,9 @@ export class Mediaq {
         return this;
     }
 
-    public mediaQuery(media: string): Mediaq {
+    public mediaQuery(media: string, name?: string): Mediaq {
 
-        this.addMediaQuery(media);
+        this.addMediaQuery(media, name);
 
         return this;
     }
@@ -184,9 +190,9 @@ export class Mediaq {
         return mediaQueries;
     }
 
-    private addMediaQuery(media: string): void {
+    private addMediaQuery(media: string, name?: string): void {
 
-        let mediaQuery = new MediaQuery(media);
+        let mediaQuery = new MediaQuery(media, name);
 
         if (this._listening) {
 

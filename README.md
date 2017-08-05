@@ -19,7 +19,7 @@ import {Mediaq, MediaQuery} from "mediaq";
 ```typescript
 var mediaq = new Mediaq()
                  .fromStyleSheets(href?: RegExp)
-                 .mediaQuery(media: string)
+                 .mediaQuery(media: string, name?: string)
                  .onMediaQueryMatchedChanged((mediaQuery: MediaQuery) => { })
                  .start();
 ```
@@ -27,7 +27,7 @@ var mediaq = new Mediaq()
 
 #### Methods
 * ```fromStyleSheets(href?: RegExp)``` : searches for media queries defined in the stylesheets loaded in the document.
-* ```mediaQuery(media: string)``` : adds a media query that was not defined in stylesheets.
+* ```mediaQuery(media: string, name?: string)``` : adds a media query that was not defined in stylesheets.
 * ```onMediaQueryMatchedChanged(listener: MediaQueryMatchChangedListener)``` : adds a listener that will triggered every time a media query is matched or stops being matched.
 * ```offMediaQueryMatchedChanged(listener: MediaQueryMatchChangedListener)``` : removes a listener that was added by ```onMediaQueryMatchedChanged(listener: MediaQueryMatchChangedListener)```.
 * ```start()``` : starts listening to changes in media queries.
