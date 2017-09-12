@@ -29,11 +29,14 @@
   },
   "homepage": "https://github.com/maroun-baydoun/mediaq#readme",
   "devDependencies": {
-    "@types/node": "^7.0.22",
-    "@types/qunit": "^2.0.31",
-    "qunitjs": "^2.3.2",
-    "ts-loader": "^2.1.0",
-    "typescript": "^2.3.3",
-    "webpack": "^2.6.1"
+    "@types/node": "7.0.22",
+    "@types/qunit": "2.0.31",
+    "qunitjs": "2.3.2",
+    "ts-loader": "2.1.0",
+    "typescript": "2.3.3",
+    "webpack": "2.6.1"
+  },
+  "dependencies": {
+    "evented-ts": "1.0.3"
   }
 }

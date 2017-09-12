@@ -1,3 +1,4 @@
+import {Evented, Event} from "evented-ts";
 
 export class MediaQuery {
 
@@ -38,7 +39,7 @@ export type MediaQueryMatchChangedListener = (mediaQuery: MediaQuery) => void;
 
 export class Mediaq {
     private _mediaQueries: {[id: string]: MediaQuery};
-    private _listeners: Array<MediaQueryMatchChangedListener>;
+    private _eventedMap: {eventedOff: () => void, listener: MediaQueryMatchChangedListener}[] = [];
     private _listening: boolean = false;
     private _mediaQueryListListener: MediaQueryListListener = (mediaQueryList: MediaQueryList) => {
         let mediaQuery: MediaQuery | undefined = this._mediaQueries[mediaQueryList.media];
@@ -47,12 +48,11 @@ export class Mediaq {
             this.invokeListeners(mediaQuery);
         }
     }
+    private static EVENTED_EVENT_NAME = "mediaQueryMatchedChanged";
 
     public constructor() {
 
         this._mediaQueries = {};
-        this._listeners = [];
-
     }
 
     get listening(): boolean {
@@ -114,22 +114,29 @@ export class Mediaq {
 
 
     public onMediaQueryMatchedChanged(listener: MediaQueryMatchChangedListener): Mediaq {
+        const eventedListener = (event: Event<MediaQuery>) => {
+          if (event.args) {
+            listener(event.args);
+          }
+        };
 
-        this._listeners.push(listener);
+        const eventedOff = Evented.on(Mediaq.EVENTED_EVENT_NAME, eventedListener);
+
+        this._eventedMap.push({eventedOff: eventedOff, listener: listener});
 
         return this;
     }
 
-    public offMediaQueryMatchedChanged(listener: MediaQueryMatchChangedListener): Mediaq {
-
-        let length: number = this._listeners.length,
-            i: number = length;
-
-        while (i--) {
-            if (this._listeners[i] === listener) {
-                this._listeners.splice(i, 1);
-                break;
+    public offMediaQueryMatchedChanged(listener?: MediaQueryMatchChangedListener): Mediaq {
+        if (!listener) {
+          Evented.off(Mediaq.EVENTED_EVENT_NAME);
+        } else {
+          this._eventedMap = this._eventedMap.filter((l) => {
+            if (l.listener !== listener) {
+              return l;
             }
+            l.eventedOff();
+          });
         }
 
         return this;
@@ -211,18 +218,8 @@ export class Mediaq {
     }
 
     private invokeListeners(mediaQuery: MediaQuery): void {
-        if (this._listeners.length > 0) {
-
-            let length = this._listeners.length,
-                listener: MediaQueryMatchChangedListener,
-                j = length;
-
-            while (j--) {
-
-                listener = this._listeners[j];
-
-                listener.call(this, mediaQuery);
-            }
+        if (Evented.listensTo(Mediaq.EVENTED_EVENT_NAME)) {
+          Evented.fire<MediaQuery>(Mediaq.EVENTED_EVENT_NAME, mediaQuery);
         }
     }
 
