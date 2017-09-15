@@ -10,7 +10,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       let mediaQueryItem: HTMLElement | null = <HTMLElement>document.querySelector("li[data-media='" + mediaQuery + "']");
       if (!mediaQueryItem) {
         mediaQueryItem = document.createElement("li");
-        mediaQueryItem.innerText = mediaQuery.media;
+        mediaQueryItem.innerHTML = mediaQuery.media;
+        if (mediaQuery.name) {
+          mediaQueryItem.innerHTML += "<br/>" + mediaQuery.name;
+        }
         mediaQueryItem.dataset.media = mediaQuery.media;
         if (mediaQueriesList) {
           mediaQueriesList.appendChild(mediaQueryItem);

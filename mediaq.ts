@@ -67,6 +67,9 @@ export class Mediaq {
             sheet: CSSStyleSheet,
             rules: CSSRuleList,
             rule: CSSRule,
+            mediaRuleRules: CSSRuleList,
+            mediaqRule: CSSStyleRule,
+            name: string | undefined,
             mediaList: MediaList,
             mediaQueryList: MediaQueryList,
             keep: boolean = false,
@@ -74,6 +77,7 @@ export class Mediaq {
             j: number = 0;
 
         while (i--) {
+            name = undefined;
 
             sheet = <CSSStyleSheet>sheets[i];
 
@@ -95,7 +99,14 @@ export class Mediaq {
 
                     if (rule.constructor === CSSMediaRule) {
                         mediaList = (<CSSMediaRule>rule).media;
-                        this.addMediaQuery(mediaList.mediaText);
+                        mediaRuleRules = (<CSSMediaRule>rule).cssRules;
+                        if (mediaRuleRules.length && mediaRuleRules[0].type === CSSRule.STYLE_RULE) {
+                          mediaqRule = (<CSSStyleRule>mediaRuleRules.item(0));
+                          if (mediaqRule.selectorText === "mediaq" && mediaqRule.style.content) {
+                            name = mediaqRule.style.content.replace(/"/g, "");
+                          }
+                        }
+                        this.addMediaQuery(mediaList.mediaText, name);
                     }
                 }
             }

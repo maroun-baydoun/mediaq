@@ -4,11 +4,15 @@ Listen to media queries updates in TypeScript
 #### Basic usage
 1. Define some media queries in a stylesheet
 ```css
-@media only screen and (max-width: 760px){
-...
+@media only screen and (min-width: 760px){
+    mediaq {
+     content: "desktop"; /* custom name given to the media query */
+    }
 }
 @media only screen and (max-width: 480px){
-...
+    mediaq {
+     content: "mobile";
+    }
 }
 ```
 2. Import Mediaq
