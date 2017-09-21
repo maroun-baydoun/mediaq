@@ -1,7 +1,7 @@
 {
   "name": "mediaq",
   "version": "1.0.6",
-  "description": "Listen to media queries updates in TypeScript",
+  "description": "Listen to media queries updates in JavaScript",
   "main": "./dist/mediaq.js",
   "types": "./dist/mediaq.d.ts",
   "scripts": {
@@ -17,7 +17,8 @@
   "keywords": [
     "typescript",
     "mediaquery",
-    "responsive"
+    "responsive",
+    "javascript"
   ],
   "author": {
     "name": "Maroun Baydoun",

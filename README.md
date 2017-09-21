@@ -1,5 +1,7 @@
 # Mediaq
-Listen to media queries updates in TypeScript
+Listen to media queries updates in JavaScript
+
+[![npm version](https://badge.fury.io/js/mediaq.svg)](https://badge.fury.io/js/mediaq)
 
 #### Basic usage
 1. Define some media queries in a stylesheet
@@ -16,11 +18,11 @@ Listen to media queries updates in TypeScript
 }
 ```
 2. Import Mediaq
-```typescript
+```js
 import {Mediaq, MediaQuery} from "mediaq";
 ```
 3. Initialize a Mediaq instance
-```typescript
+```js
 var mediaq = new Mediaq()
                  .fromStyleSheets(href?: RegExp)
                  .mediaQuery(media: string, name?: string)
