@@ -1,4 +1,4 @@
-import {Mediaq, MediaQuery} from "../mediaq";
+import {Mediaq, MediaQuery} from "../src/mediaq";
 
 document.addEventListener("DOMContentLoaded", (event) => {
 

@@ -1,22 +1,33 @@
-var path = require('path');
+var path = require('path')
+var webpack = require('webpack')
+
+const PATHS = {
+  src: path.join(__dirname, './src'),
+  dist: path.join(__dirname, './dist')
+}
+
 module.exports = {
+
   entry: {
-    'test/test': './test/test.ts',
-    'sample/app': './sample/app.ts'
+    'mediaq': PATHS.src + '/mediaq.ts'
   },
   output: {
+    path: PATHS.dist,
     filename: '[name].js',
-    publicPath: '/dist/web/',
-    path: path.resolve(__dirname, 'dist/web')
-  },
-  resolve: {
-    extensions: ['.ts']
+    library: 'mediaq',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   module: {
-    loaders: [{
-      test: /\.ts$/,
-      exclude: /node_modules/,
-      loader: 'ts-loader'
-    }]
+    rules: [
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/
+      }
+    ],
+  },
+  resolve: {
+    extensions: ['.ts', '.js']
   }
 }

@@ -1,5 +1,5 @@
 
-import {Mediaq, MediaQuery} from "../mediaq";
+import {Mediaq, MediaQuery} from "../src/mediaq";
 
 QUnit.test("mediaq fromStyleSheets", (assert) => {
 

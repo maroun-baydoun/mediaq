@@ -3,12 +3,10 @@
   "version": "1.0.7",
   "description": "Listen to media queries updates in JavaScript",
   "main": "./dist/mediaq.js",
-  "types": "./dist/mediaq.d.ts",
+  "types": "./dist/types/mediaq.d.ts",
   "scripts": {
-    "build": "tsc ",
-    "watch": "tsc -w",
-    "build-web": "webpack ",
-    "watch-web": "webpack -w"
+    "build": "webpack",
+    "watch": "webpack -w"
   },
   "repository": {
     "type": "git",
@@ -33,11 +31,11 @@
     "@types/node": "7.0.22",
     "@types/qunit": "2.0.31",
     "qunitjs": "2.3.2",
-    "ts-loader": "2.1.0",
-    "typescript": "2.3.3",
-    "webpack": "2.6.1"
+    "ts-loader": "2.3.7",
+    "typescript": "2.5.3",
+    "webpack": "3.6.0"
   },
   "dependencies": {
-    "evented-ts": "1.0.3"
+    "evented-ts": "1.0.4"
   }
 }
