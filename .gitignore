@@ -1,0 +1,5 @@
+dist/**/*
+node_modules/**/*
+**/*.js
+!webpack.config.js
+tslint.json
