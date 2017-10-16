@@ -7,7 +7,7 @@ QUnit.test("mediaq fromStyleSheets", (assert) => {
     mediaQuery1 = new MediaQuery("only screen and (max-width: 767px)", "mobile"),
     mediaQuery2 = new MediaQuery("only screen and (min-width: 1000px)", "desktop");
 
-  assert.propEqual(mediaq.mediaQueries(), [mediaQuery2, mediaQuery1], "2 media queries read from stylesheets");
+  assert.propEqual(mediaq.mediaQueries(), [mediaQuery1, mediaQuery2], "2 media queries read from stylesheets");
 
 });
 
@@ -17,7 +17,7 @@ QUnit.test("mediaq fromStyleSheets with matching href regex", (assert) => {
     mediaQuery1 = new MediaQuery("only screen and (max-width: 767px)", "mobile"),
     mediaQuery2 = new MediaQuery("only screen and (min-width: 1000px)", "desktop");
 
-  assert.propEqual(mediaq.mediaQueries(), [mediaQuery2, mediaQuery1], "2 media queries read from stylesheets");
+  assert.propEqual(mediaq.mediaQueries(), [mediaQuery1, mediaQuery2], "2 media queries read from stylesheets");
 
 });
 
