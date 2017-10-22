@@ -2,6 +2,7 @@
 Listen to media queries updates in JavaScript
 
 [![npm version](https://badge.fury.io/js/mediaq.svg)](https://badge.fury.io/js/mediaq)
+[![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/maroun-baydoun/mediaq)
 
 #### Basic usage
 1. Define some media queries in a stylesheet

@@ -72,8 +72,8 @@ export class Mediaq {
         range(ruleList.length)
           .map((_, j) => ruleList[j])
           .forEach((rule) => {
-            const mediaText = this.mediaTextFromRule(rule);
-            const name = this.nameFromRule(rule);
+            const mediaText = mediaTextFromRule(rule);
+            const name = nameFromRule(rule);
 
             if (mediaText) {
               this.addMediaQuery(mediaText, name);
@@ -131,7 +131,7 @@ export class Mediaq {
     }
 
     for (media in this._mediaQueries) {
-      if (this.hasMediaQuery(media)) {
+      if (hasMediaQuery(this._mediaQueries, media)) {
         mediaQuery = this._mediaQueries[media];
         this.listenToMediaQueryChanges(mediaQuery);
       }
@@ -152,7 +152,7 @@ export class Mediaq {
     }
 
     for (media in this._mediaQueries) {
-      if (this.hasMediaQuery(media)) {
+      if (hasMediaQuery(this._mediaQueries, media)) {
         mediaQuery = this._mediaQueries[media];
         mediaQuery.mediaQueryList.removeListener(this._mediaQueryListListener);
       }
@@ -168,30 +168,12 @@ export class Mediaq {
       media: string;
 
     for (media in this._mediaQueries) {
-      if (this.hasMediaQuery(media)) {
+      if (hasMediaQuery(this._mediaQueries, media)) {
         mediaQueries.push(this._mediaQueries[media]);
       }
     }
 
     return mediaQueries;
-  }
-
-  private mediaTextFromRule(rule: CSSRule): string | undefined {
-    if (rule.constructor === CSSMediaRule) {
-      return (<CSSMediaRule>rule).media.mediaText;
-    }
-  }
-
-  private nameFromRule(rule: CSSRule): string | undefined {
-    if (rule.constructor === CSSMediaRule) {
-      const mediaRuleRules = (<CSSMediaRule>rule).cssRules;
-      if (mediaRuleRules.length && mediaRuleRules[0].type === CSSRule.STYLE_RULE) {
-        const mediaqRule = (<CSSStyleRule>mediaRuleRules.item(0));
-        if (mediaqRule.selectorText === "mediaq" && mediaqRule.style.content) {
-          return mediaqRule.style.content.replace(/"/g, "");
-        }
-      }
-    }
   }
 
   private addMediaQuery(media: string, name?: string): void {
@@ -219,10 +201,28 @@ export class Mediaq {
       Evented.fire<MediaQuery>(Mediaq.EVENTED_EVENT_NAME, mediaQuery);
     }
   }
-
-  private hasMediaQuery(media: string): boolean {
-    return Object.prototype.hasOwnProperty.call(this._mediaQueries, media);
-  }
 }
 
 const range = (length: number) => (<any[]>Array.apply(null, { length: length }));
+
+const hasMediaQuery = (mediaQueries: { [id: string]: MediaQuery }, media: string): boolean => {
+  return Object.prototype.hasOwnProperty.call(mediaQueries, media);
+};
+
+const mediaTextFromRule = (rule: CSSRule): string | undefined => {
+  if (rule.constructor === CSSMediaRule) {
+    return (<CSSMediaRule>rule).media.mediaText;
+  }
+};
+
+const nameFromRule = (rule: CSSRule): string | undefined => {
+  if (rule.constructor === CSSMediaRule) {
+    const mediaRuleRules = (<CSSMediaRule>rule).cssRules;
+    if (mediaRuleRules.length && mediaRuleRules[0].type === CSSRule.STYLE_RULE) {
+      const mediaqRule = (<CSSStyleRule>mediaRuleRules.item(0));
+      if (mediaqRule.selectorText === "mediaq" && mediaqRule.style.content) {
+        return mediaqRule.style.content.replace(/"/g, "");
+      }
+    }
+  }
+};

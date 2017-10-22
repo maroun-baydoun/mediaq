@@ -34,12 +34,12 @@
     "karma": "1.7.1",
     "karma-phantomjs-launcher": "1.0.4",
     "karma-qunit": "1.2.1",
-    "karma-typescript": "3.0.7",
-    "qunitjs": "2.4.0",
-    "ts-loader": "3.0.0",
-    "tslint": "5.7.0",
+    "karma-typescript": "3.0.8",
+    "qunitjs": "2.4.1",
+    "ts-loader": "3.0.5",
+    "tslint": "5.8.0",
     "typescript": "2.5.3",
-    "webpack": "3.7.1"
+    "webpack": "3.8.1"
   },
   "dependencies": {
     "evented-ts": "1.0.4"
