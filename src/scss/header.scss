@@ -1,0 +1,11 @@
+@import './_variables.scss';
+
+header {
+    height: $header-height;
+    padding: $header-padding;
+
+    h1 {
+        line-height: $header-height;
+        font-size: 2em;
+    }
+}

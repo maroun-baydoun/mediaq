@@ -1,14 +1,10 @@
 {
-  "name": "mediaq",
-  "version": "1.0.6",
-  "description": "Listen to media queries updates in JavaScript",
-  "main": "./dist/mediaq.js",
-  "types": "./dist/mediaq.d.ts",
+  "name": "mediaq-web-page",
+  "version": "1.0.0",
+  "description": "Mediaq project page",
   "scripts": {
-    "build": "tsc ",
-    "watch": "tsc -w",
-    "build-web": "webpack ",
-    "watch-web": "webpack -w"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server",
+    "build": "cross-env NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",
@@ -28,16 +24,23 @@
   "bugs": {
     "url": "https://github.com/maroun-baydoun/mediaq/issues"
   },
-  "homepage": "https://github.com/maroun-baydoun/mediaq#readme",
+  "homepage": "http://www.maroun-baydoun.com/projects/mediaq",
   "devDependencies": {
-    "@types/node": "7.0.22",
-    "@types/qunit": "2.0.31",
-    "qunitjs": "2.3.2",
-    "ts-loader": "2.1.0",
-    "typescript": "2.3.3",
-    "webpack": "2.6.1"
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.2",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-react": "6.24.1",
+    "cross-env": "5.1.1",
+    "css-loader": "0.28.7",
+    "html-webpack-plugin": "2.30.1",
+    "node-sass": "4.5.3",
+    "sass-loader": "6.0.6",
+    "style-loader": "0.19.0",
+    "webpack": "3.8.1",
+    "webpack-dev-server": "2.9.4"
   },
   "dependencies": {
-    "evented-ts": "1.0.3"
+    "react": "16.1.0",
+    "react-dom": "16.1.0"
   }
 }
