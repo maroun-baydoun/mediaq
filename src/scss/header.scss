@@ -1,11 +1,30 @@
 @import './_variables.scss';
 
+$heading-color: #fff;
+$sub-heading-color: #C5CAE9;
+
 header {
     height: $header-height;
     padding: $header-padding;
+    background-color: $header-background-color;
 
-    h1 {
-        line-height: $header-height;
-        font-size: 2em;
+    .headings-container {
+
+        display: flex;
+
+        h1 {
+            color: $heading-color;
+            line-height: $header-height;
+            font-size: 2em;
+        }
+
+        h2 {
+            color: $sub-heading-color;
+            line-height: #{($header-height + 5)};
+            font-size: 1.2em;
+            margin-left: 15px;
+        }
     }
+
+   
 }
