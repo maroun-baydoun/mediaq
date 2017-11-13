@@ -4,6 +4,8 @@ $heading-color: #fff;
 $sub-heading-color: #C5CAE9;
 
 header {
+    display: flex;
+    justify-content: space-between;
     height: $header-height;
     padding: $header-padding;
     background-color: $header-background-color;
@@ -11,6 +13,7 @@ header {
     .headings-container {
 
         display: flex;
+        align-items: baseline;
 
         h1 {
             color: $heading-color;
@@ -20,9 +23,19 @@ header {
 
         h2 {
             color: $sub-heading-color;
-            line-height: #{($header-height + 5)};
             font-size: 1.2em;
             margin-left: 15px;
+        }
+    }
+
+    .badges-container {
+        display: flex;
+        align-items: baseline;
+        line-height: $header-height;
+
+        .github-badge {
+            min-width: 50px;
+            margin-left: 10px;
         }
     }
 
