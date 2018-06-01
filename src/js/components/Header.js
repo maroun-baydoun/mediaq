@@ -1,10 +1,10 @@
+import '../../scss/header.scss';
+
 import React from 'react';
 
-import styles from '../../scss/header.scss';
-
 const Header = (props) => {
-
-    return <header>
+    return (
+      <header>
         <div className="headings-container">
             <h1>Mediaq</h1>
             <h2>Listen to media queries updates in JavaScript</h2>
@@ -20,7 +20,7 @@ const Header = (props) => {
             </div>
         </div>
     </header>
-}
-
+  );
+};
 
 export default Header;
