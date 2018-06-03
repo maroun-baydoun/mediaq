@@ -66,9 +66,9 @@ export class Mediaq {
 
     range(sheets.length)
       .map((_, i) => <CSSStyleSheet>sheets[i])
-      .filter((sheet) => !href || (href.test(sheet.href)))
+      .filter((sheet) => !href || (sheet.href !== null && (href.test(sheet.href))))
       .map((sheet) => sheet.cssRules)
-      .forEach((ruleList, i) => {
+      .forEach((ruleList) => {
         range(ruleList.length)
           .map((_, j) => ruleList[j])
           .forEach((rule) => {

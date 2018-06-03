@@ -31,15 +31,17 @@
   "devDependencies": {
     "@types/node": "7.0.22",
     "@types/qunit": "2.0.31",
-    "karma": "1.7.1",
+    "karma": "2.0.2",
     "karma-phantomjs-launcher": "1.0.4",
-    "karma-qunit": "1.2.1",
-    "karma-typescript": "3.0.8",
+    "karma-qunit": "2.1.0",
+    "karma-typescript": "3.0.12",
+    "qunit": "^2.6.1",
     "qunitjs": "2.4.1",
-    "ts-loader": "3.0.5",
-    "tslint": "5.8.0",
-    "typescript": "2.5.3",
-    "webpack": "3.8.1"
+    "ts-loader": "4.3.0",
+    "tslint": "5.10.0",
+    "typescript": "2.9.1",
+    "webpack": "4.10.2",
+    "webpack-cli": "2.1.4"
   },
   "dependencies": {
     "evented-ts": "1.0.4"
