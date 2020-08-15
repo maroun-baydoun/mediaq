@@ -2,10 +2,22 @@
 Listen to media queries updates in JavaScript
 
 [![npm version](https://badge.fury.io/js/mediaq.svg)](https://badge.fury.io/js/mediaq)
-[![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/maroun-baydoun/mediaq)
 
 #### Basic usage
-1. Define some media queries in a stylesheet
+
+##### Install
+
+```
+npm i mediaq
+```
+Or
+
+```
+yarn add mediaq
+```
+
+##### Define some media queries in a stylesheet
+
 ```css
 @media only screen and (min-width: 760px){
     mediaq {
@@ -18,13 +30,15 @@ Listen to media queries updates in JavaScript
     }
 }
 ```
-2. Import Mediaq
+##### Import Mediaq
+
 ```js
-import {Mediaq, MediaQuery} from "mediaq";
+import { Mediaq, MediaQuery } from "mediaq";
 ```
-3. Initialize a Mediaq instance
+##### Initialize a Mediaq instance
+
 ```js
-var mediaq = new Mediaq()
+let mediaq = new Mediaq()
                  .fromStyleSheets(href?: RegExp)
                  .mediaQuery(media: string, name?: string)
                  .onMediaQueryMatchedChanged((mediaQuery: MediaQuery) => { })
@@ -41,5 +55,3 @@ var mediaq = new Mediaq()
 * ```stop()``` : stops listening to changes in media queries.
 * ```mediaQueries()``` : returns the media queries added by ```fromStyleSheets()``` and ```mediaQuery(media: string)``` methods.
 
-#### Example
-See [sample](https://github.com/maroun-baydoun/mediaq/tree/master/sample) directory.

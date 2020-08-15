@@ -4,7 +4,8 @@
         "moduleResolution": "node",
         "declaration": true,
         "strict": true,
-        "declarationDir": "./types"
+        "declarationDir": "./types",
+        "lib": ["DOM", "ES5"]
     },
     "files": [
         "./src/mediaq.ts"

@@ -1,5 +1,4 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
 
 const PATHS = {
   src: path.join(__dirname, './src'),
@@ -7,7 +6,7 @@ const PATHS = {
 }
 
 module.exports = {
-
+  mode: 'production',
   entry: {
     'mediaq': PATHS.src + '/mediaq.ts'
   },
@@ -16,7 +15,8 @@ module.exports = {
     filename: '[name].js',
     library: 'mediaq',
     libraryTarget: 'umd',
-    umdNamedDefine: true
+    umdNamedDefine: true,
+    globalObject: 'this'
   },
   module: {
     rules: [

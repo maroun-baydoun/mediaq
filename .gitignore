@@ -1,6 +1,7 @@
 dist/**/*
+types/**/*
 node_modules/**/*
+.DS_Store 
 **/*.js
 !webpack.config.js
 !karma.conf.js
-tslint.json

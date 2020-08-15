@@ -1,7 +1,7 @@
 module.exports = function(config) {
   config.set({
     singleRun: true,
-    frameworks: ["qunit", "karma-typescript"],
+    frameworks: ["jasmine", "karma-typescript"],
     files: [{
         pattern: "test/**/*.ts"
       },
@@ -19,9 +19,6 @@ module.exports = function(config) {
       "**/*.ts": ["karma-typescript"],
     },
     reporters: ["progress"],
-    browsers: ["PhantomJS"],
-    phantomjsLauncher: {
-      exitOnResourceError: true
-    }
+    browsers: ["ChromeHeadless"]
   });
 };

@@ -4,10 +4,19 @@
   "description": "Listen to media queries updates in JavaScript",
   "main": "./dist/mediaq.js",
   "types": "./dist/types/mediaq.d.ts",
+  "files": [
+    "dist/mediaq.js",
+    "dist/types",
+    "README.md",
+    "LICENSE.md"
+  ],
   "scripts": {
-    "build": "webpack",
-    "watch": "webpack -w",
-    "test": "karma start"
+    "test": "karma start",
+    "build": "webpack --config webpack.config.js",
+    "prettier": "prettier --write './{src,test}/**/*.ts'",
+    "preversion": "npm test",
+    "version": "rm -rf dist && npm run build",
+    "postversion": "git push --tags"
   },
   "repository": {
     "type": "git",
@@ -21,7 +30,7 @@
   ],
   "author": {
     "name": "Maroun Baydoun",
-    "url": "http://www.maroun-baydoun.com/"
+    "url": "https://www.maroun-baydoun.com/"
   },
   "license": "MIT",
   "bugs": {
@@ -29,21 +38,19 @@
   },
   "homepage": "https://github.com/maroun-baydoun/mediaq#readme",
   "devDependencies": {
-    "@types/node": "7.0.22",
-    "@types/qunit": "2.0.31",
-    "karma": "2.0.2",
-    "karma-phantomjs-launcher": "1.0.4",
-    "karma-qunit": "2.1.0",
-    "karma-typescript": "3.0.12",
-    "qunit": "^2.6.1",
-    "qunitjs": "2.4.1",
-    "ts-loader": "4.3.0",
-    "tslint": "5.10.0",
-    "typescript": "2.9.1",
-    "webpack": "4.10.2",
-    "webpack-cli": "2.1.4"
+    "@types/jasmine": "3.5.12",
+    "jasmine-core": "3.6.0",
+    "karma": "5.1.1",
+    "karma-chrome-launcher": "3.1.0",
+    "karma-jasmine": "4.0.1",
+    "karma-typescript": "5.1.0",
+    "prettier": "2.0.5",
+    "ts-loader": "8.0.2",
+    "typescript": "3.9.7",
+    "webpack": "4.44.1",
+    "webpack-cli": "3.3.12"
   },
   "dependencies": {
-    "evented-ts": "1.0.4"
+    "evented-ts": "1.1.0"
   }
 }

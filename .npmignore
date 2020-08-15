@@ -1,9 +1,0 @@
-*.ts
-!*.d.ts
-test/**/*
-sample/**/*
-dist/web/**/*
-dist/web/**/*.d.ts
-tslint.json
-tsconfig.json
-webpack.config.js
