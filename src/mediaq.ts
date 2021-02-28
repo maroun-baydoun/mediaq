@@ -1,4 +1,6 @@
-import { Evented, Event } from "evented-ts";
+import createEvented, { Event } from "evented-ts";
+
+const evented = createEvented();
 
 export class MediaQuery {
   private _media: string;
@@ -99,7 +101,7 @@ export class Mediaq {
       }
     };
 
-    const eventedOff = Evented.on(Mediaq.EVENTED_EVENT_NAME, eventedListener);
+    const eventedOff = evented.on(Mediaq.EVENTED_EVENT_NAME, eventedListener);
 
     this._eventedMap.push({ eventedOff: eventedOff, listener: listener });
 
@@ -110,7 +112,7 @@ export class Mediaq {
     listener?: MediaQueryMatchChangedListener
   ): Mediaq {
     if (!listener) {
-      Evented.off(Mediaq.EVENTED_EVENT_NAME);
+      evented.off(Mediaq.EVENTED_EVENT_NAME);
     } else {
       this._eventedMap = this._eventedMap.filter((l) => {
         if (l.listener !== listener) {
@@ -191,8 +193,8 @@ export class Mediaq {
   }
 
   private invokeListeners(mediaQuery: MediaQuery): void {
-    if (Evented.listensTo(Mediaq.EVENTED_EVENT_NAME)) {
-      Evented.fire<MediaQuery>(Mediaq.EVENTED_EVENT_NAME, mediaQuery);
+    if (evented.listensTo(Mediaq.EVENTED_EVENT_NAME)) {
+      evented.fire<MediaQuery>(Mediaq.EVENTED_EVENT_NAME, mediaQuery);
     }
   }
 }

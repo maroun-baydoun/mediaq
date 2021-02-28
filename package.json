@@ -13,9 +13,9 @@
   "scripts": {
     "test": "karma start",
     "build": "webpack --config webpack.config.js",
-    "prettier": "prettier --write './{src,test}/**/*.ts'",
+    "prettier": "prettier --write './{src,test}/**/*.ts' './webpack.config.js'",
     "preversion": "npm test",
-    "version": "rm -rf dist && npm run build",
+    "version": "npm run build",
     "postversion": "git push --tags"
   },
   "repository": {
@@ -30,27 +30,28 @@
   ],
   "author": {
     "name": "Maroun Baydoun",
-    "url": "https://www.maroun-baydoun.com/"
+    "url": "https://maroun-baydoun.com/"
   },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/maroun-baydoun/mediaq/issues"
   },
-  "homepage": "https://github.com/maroun-baydoun/mediaq#readme",
+  "homepage": "https://dev.maroun-baydoun.com/mediaq/",
   "devDependencies": {
     "@types/jasmine": "3.5.12",
+    "clean-webpack-plugin": "3.0.0",
     "jasmine-core": "3.6.0",
-    "karma": "5.1.1",
+    "karma": "6.1.1",
     "karma-chrome-launcher": "3.1.0",
     "karma-jasmine": "4.0.1",
-    "karma-typescript": "5.1.0",
-    "prettier": "2.0.5",
-    "ts-loader": "8.0.2",
-    "typescript": "3.9.7",
-    "webpack": "4.44.1",
-    "webpack-cli": "3.3.12"
+    "karma-typescript": "5.4.0",
+    "prettier": "2.2.1",
+    "ts-loader": "8.0.17",
+    "typescript": "4.2.2",
+    "webpack": "5.24.2",
+    "webpack-cli": "4.5.0"
   },
   "dependencies": {
-    "evented-ts": "1.1.0"
+    "evented-ts": "2.0.0"
   }
 }
