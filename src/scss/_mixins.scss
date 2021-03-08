@@ -56,8 +56,16 @@
   padding: $vertical-factor * $spacing $horizontal-factor * $spacing;
 }
 
+@mixin padding-zero() {
+  padding: 0;
+}
+
 @mixin margin($vertical-factor: 0, $horizontal-factor: 0) {
   margin: $vertical-factor * $spacing $horizontal-factor * $spacing;
+}
+
+@mixin margin-zero() {
+  margin: 0;
 }
 
 @mixin flex($direction: none, $align-items: none, $justify-content: none) {
