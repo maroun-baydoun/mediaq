@@ -1,8 +1,10 @@
 @import "mixins";
 
 .ul {
-  li:not(:last-child) {
-    @include margin-bottom(1);
+  &:not(&--condensed) {
+    li:not(:last-child) {
+      @include margin-bottom(1);
+    }
   }
 
   &--margin-left {
@@ -17,7 +19,8 @@
 
   &--condensed {
     li {
-      @include margin-vertical(0);
+      @include margin-top(0);
+      @include margin-bottom(0);
     }
   }
 
