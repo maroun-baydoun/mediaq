@@ -6,8 +6,13 @@ $link-color1: #0000ff;
 $link-color2: #0000cd;
 $border-color: #eee;
 
-$heading-font-family: "Cutive Mono", monospace;
-$content-font-family: "Roboto", sans-serif;
+$monospace-font-family: "Cutive Mono", "SFMono-Regular", Consolas,
+  "Liberation Mono", Menlo, Courier, monospace;
+
+$heading-font-family: $monospace-font-family;
+$content-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+  sans-serif;
 
 $h1-font-size: 2rem;
 $h2-font-size: 1.3rem;
