@@ -80,11 +80,6 @@ module.exports = merge(react, {
   resolve: {
     extensions: [".js", ".scss", ".css"],
   },
-  devServer: {
-    contentBase: path.join(__dirname, "dist"),
-    compress: true,
-    port: 8000,
-  },
   optimization: {
     splitChunks: {
       chunks: "all",
