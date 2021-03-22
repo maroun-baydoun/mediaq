@@ -25,7 +25,7 @@
     @include padding(1, 2);
   }
 
-  thead th td {
+  thead > th {
     font-weight: $font-weight-bold;
   }
 }
