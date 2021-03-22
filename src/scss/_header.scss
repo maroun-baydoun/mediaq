@@ -6,15 +6,6 @@
 
   @include padding(4, 2);
 
-  @media #{$media-mobile} {
-    @include flex-column-centered();
-
-    h1,
-    h2 {
-      text-align: center;
-    }
-  }
-
   h2 {
     color: $body-color2;
 
