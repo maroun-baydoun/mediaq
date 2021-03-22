@@ -10,11 +10,22 @@
 
   @media #{$media-mobile} {
     width: 100%;
+    max-width: unset;
+  }
+
+  &--striped {
+    tbody > tr:nth-child(even) {
+      background-color: #f5f5f5;
+    }
   }
 
   thead th,
   tbody td {
     border: 1px solid $border-color;
     @include padding(1, 2);
+  }
+
+  thead th td {
+    font-weight: $font-weight-bold;
   }
 }

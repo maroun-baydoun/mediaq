@@ -16,6 +16,7 @@ body {
 
 a {
   color: $link-color1;
+  text-underline-offset: 3px;
 
   &:hover {
     color: $link-color2;
