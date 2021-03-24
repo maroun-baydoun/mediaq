@@ -15,17 +15,25 @@
 
   &__links {
     & > a {
-      @include margin-right(2);
+      &::not(:last-of-type) {
+        @include margin-right(2);
+      }
+
+      @media #{$media-mobile} {
+        @include padding(2, 2);
+      }
     }
   }
 
   &__credits {
     a {
       @include margin-left(0.5);
+      @include padding-vertical(2);
+      @include padding-right(2);
     }
 
     @media #{$media-mobile} {
-      @include margin-top(2);
+      @include margin-top(5);
     }
   }
 }

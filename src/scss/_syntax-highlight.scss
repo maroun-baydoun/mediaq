@@ -4,8 +4,10 @@
 $syntax-highlight-container-width: 50vw;
 $syntax-highlight-container-width-mobile: auto;
 
-.syntax-highlight-container {
+pre[class*="language-"].syntax-highlight-container {
   width: $syntax-highlight-container-width;
+  background-color: #fff;
+  $border-color: 0.5px solid $border-color;
 
   @media #{$media-mobile} {
     width: $syntax-highlight-container-width-mobile;
