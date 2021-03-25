@@ -21,7 +21,8 @@
 
       @media #{$media-mobile} {
         @include padding(2, 2);
-        @include margin-horizontal(1);
+        @include margin-right(1);
+        @include margin-left(1);
       }
     }
   }
