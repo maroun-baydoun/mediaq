@@ -15,12 +15,13 @@
 
   &__links {
     & > a {
-      &::not(:last-of-type) {
+      &:not(:last-of-type) {
         @include margin-right(2);
       }
 
       @media #{$media-mobile} {
         @include padding(2, 2);
+        @include margin-horizontal(1);
       }
     }
   }

@@ -7,7 +7,7 @@ $syntax-highlight-container-width-mobile: auto;
 pre[class*="language-"].syntax-highlight-container {
   width: $syntax-highlight-container-width;
   background-color: #fff;
-  border: 0.5px solid $border-color;
+  border: 1px solid $border-color;
 
   @media #{$media-mobile} {
     width: $syntax-highlight-container-width-mobile;
