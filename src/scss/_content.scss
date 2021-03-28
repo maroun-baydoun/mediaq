@@ -4,6 +4,11 @@
 .content {
   flex: 1 0 auto;
   line-height: 1.5;
+  max-width: 50vw;
 
   @include padding(4, 2);
+
+  @media #{$media-mobile} {
+    max-width: unset;
+  }
 }
