@@ -95,13 +95,14 @@ mediaq.stop();</code></pre>
                 <span class="monospace">stop</span> ceases listening for media query updates. Calling this method repeatedly has no effect.
             </li>
         </ul>
-
-    
-    
-
         <hr class="hr--large"/>
         <h3 id="demo">Demo</h3>
         <div class="demo"></div>
+        <hr class="hr--large"/>
+        <h3 id="how-it-works">How does it work?</h3>
+        <p>
+            The browser exposes the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia" rel="external noopener noreferrer" target="_blank">window.matchMedia</a> method. It takes a media query as an argument and returns a <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList" rel="external noopener noreferrer" target="_blank">MediaQueryList</a> object. This object has the <span class="monospace">matches</span> boolean property. It also has an event listener that triggers when the media query's match status changes. Here's a list of <a href="https://caniuse.com/matchmedia" rel="external noopener noreferrer" target="_blank">compatible browsers</a>.
+        </p>
 
         <%if (htmlWebpackPlugin.options.linkHome) { %>
             <hr class="hr--large"/>

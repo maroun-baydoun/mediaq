@@ -1,5 +1,5 @@
 module.exports = {
-  title: "mediaq",
+  title: "mediaq - Media queries in JavaScript",
   description:
     "Media queries are not limited to CSS. A JavaScript app can listen to media queries and update the UI accordingly. Get mediaq on npm or try the demo.",
   heading1: "mediaq",
