@@ -1,6 +1,6 @@
 {
   "name": "mediaq",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Listen to media query updates in JavaScript",
   "main": "dist/mediaq.js",
   "types": "types/mediaq.d.ts",
