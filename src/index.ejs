@@ -71,6 +71,35 @@ mediaq.start();
 // When done listening 
 mediaq.stop();</code></pre>
         <hr class="hr--large"/>
+        <h3 id="api">API</h3>
+        <p>
+            The <span class="monospace">Mediaq</span> function expects a single object argument with <span class="monospace">onUpdate</span> and <span class="monospace">mediaQueries</span> keys.
+        </p>
+        <ul class="ul ul--margin-left ul--margin-top ul--square">
+            <li>
+                <span class="monospace">onUpdate</span> takes one argument having the <span class="monospace">media</span>, <span class="monospace">name</span> and <span class="monospace">matches</span> properties.
+            </li>
+            <li>
+                <span class="monospace">mediaQueries</span> is an array of objects having the <span class="monospace">name</span> and <span class="monospace">media</span> keys.
+            </li>
+        </ul>
+        <hr class="hr"/>
+        <p>
+            It returns an object having the <span class="monospace">start</span> and <span class="monospace">stop</span> methods.
+        </p>
+        <ul class="ul ul--margin-left ul--margin-top ul--square">
+            <li>
+                <span class="monospace">start</span> calls <span class="monospace">onUpdate</span> with the current state of media query matches and listens for future updates. Calling this method repeatedly has no effect.
+            </li>
+            <li>
+                <span class="monospace">stop</span> ceases listening for media query updates. Calling this method repeatedly has no effect.
+            </li>
+        </ul>
+
+    
+    
+
+        <hr class="hr--large"/>
         <h3 id="demo">Demo</h3>
         <div class="demo"></div>
 
