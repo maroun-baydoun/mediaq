@@ -41,7 +41,7 @@ mediaq.stop();
 
 #### API
 
- The `Mediaq` functions expects a single object argument with `onUpdate` and `mediaQueries` keys.
+ The `Mediaq` function expects a single object argument with `onUpdate` and `mediaQueries` keys.
 
  * `onUpdate` takes one argument having the `media`, `name` and `matches` properties.
  * `mediaQueries` is an array of objects having the `name` and `media` keys.
