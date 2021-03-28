@@ -45,6 +45,31 @@
         </nav>
     </header>
     <main class="content">
+        <h3 id="install">Install</h3>
+        <pre class="syntax-highlight-container"><code class="language-shell">npm i mediaq</code></pre>
+        Or
+        <pre class="syntax-highlight-container"><code class="language-shell">yarn add mediaq</code></pre>
+        <hr class="hr--large"/>
+        <h3 id="use">Use</h3>
+        <pre class="syntax-highlight-container"><code class="language-js">import { Mediaq } from "mediaq";
+
+const mediaq = Mediaq({
+    onUpdate: (e) => console.log(e.name, e.media, e.matches),
+    mediaQueries: [{
+            name: "mobile",
+            media: "only screen and (max-width: 600px)"
+        }, 
+        {
+            name: "desktop",
+            media: "only screen and (min-width: 600px)"
+        },
+    ]
+});
+
+mediaq.start();
+
+// When done listening 
+mediaq.stop();</code></pre>
 
         <%if (htmlWebpackPlugin.options.linkHome) { %>
             <hr class="hr--large"/>
