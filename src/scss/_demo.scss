@@ -1,0 +1,37 @@
+@import "variables";
+@import "mixins";
+
+.demo {
+  &__item {
+    border: 1px solid $border-color;
+    max-width: 50vw;
+
+    @include padding(1, 1);
+    @include flex($align-items: center);
+
+    @media #{$media-mobile} {
+      max-width: unset;
+    }
+
+    &:not(:last-of-type) {
+      @include margin-bottom(2);
+    }
+
+    &__mediaquery {
+      flex: 1;
+
+      & > div:first-child {
+        font-weight: $font-weight-bold;
+      }
+
+      & > div:last-child {
+        font-family: $monospace-font-family;
+        font-size: 0.8rem;
+      }
+    }
+
+    &__match {
+      @include margin-left(1);
+    }
+  }
+}

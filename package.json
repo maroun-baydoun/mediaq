@@ -45,12 +45,16 @@
   "dependencies": {
     "@fontsource/cutive-mono": "4.2.2",
     "@fontsource/roboto": "4.2.2",
+    "mediaq": "2.0.0",
     "prismjs": "1.23.0"
   },
   "features": {
     "react": false,
     "prismjs": {
-      "languages": ["shell", "js"]
+      "languages": [
+        "shell",
+        "js"
+      ]
     }
   }
 }
