@@ -1,98 +1,174 @@
 import { Mediaq, MediaQuery } from "../src/mediaq";
 
+import { create } from "./mediaQueryList";
+
 describe("Mediaq", () => {
-  describe("fromStyleSheets", () => {
-    it("loads media queries", () => {
-      const mediaq = new Mediaq().fromStyleSheets();
-      const mediaQuery1 = new MediaQuery(
-        "only screen and (max-width: 767px)",
-        "mobile"
-      );
-      const mediaQuery2 = new MediaQuery(
-        "only screen and (min-width: 1000px)",
-        "desktop"
-      );
-      const mediaQuery3 = new MediaQuery(
-        "only screen and (min-width: 2000px)",
-        "large-screen"
-      );
+  let onUpdate = jasmine.createSpy();
+  const mediaQueries: MediaQuery[] = [
+    { media: "only screen and (min-width: 600px)", name: "desktop" },
+    { media: "only screen and (max-width: 400px)", name: "mobile" },
+  ];
 
-      expect(mediaq.mediaQueries()).toEqual([
-        mediaQuery1,
-        mediaQuery2,
-        mediaQuery3,
-      ]);
-    });
-
-    it("loads media queries from stylesheets with matching href regex", () => {
-      const mediaq = new Mediaq().fromStyleSheets(/style2.css/);
-      const mediaQuery = new MediaQuery(
-        "only screen and (min-width: 2000px)",
-        "large-screen"
-      );
-
-      expect(mediaq.mediaQueries()).toEqual([mediaQuery]);
-    });
-
-    it("loads no media queries when no matching stylesheets are found", () => {
-      const mediaq = new Mediaq().fromStyleSheets(/style3.css/);
-
-      expect(mediaq.mediaQueries()).toEqual([]);
-    });
+  beforeEach(() => {
+    window.matchMedia = jasmine
+      .createSpy()
+      .and.returnValue(create(mediaQueries[0].media)(false));
+    onUpdate = jasmine.createSpy();
   });
 
-  describe("mediaQuery", () => {
-    it("adds a media query", () => {
-      const mediaQuery = new MediaQuery(
-        "only screen and (max-width: 500px)",
-        "mobile"
-      );
-      const mediaq = new Mediaq().mediaQuery(
-        "only screen and (max-width: 500px)",
-        "mobile"
-      );
+  it("returns start, stop and isListening functions", () => {
+    const mediaq = Mediaq({ onUpdate, mediaQueries });
 
-      expect(mediaq.mediaQueries()).toEqual([mediaQuery]);
-    });
+    expect(Object.keys(mediaq).length).toBe(3);
+    expect(mediaq.start).toEqual(jasmine.any(Function));
+    expect(mediaq.stop).toEqual(jasmine.any(Function));
+    expect(mediaq.isListening).toEqual(jasmine.any(Function));
+  });
+
+  it("calls window.matchMedia for every mediaquery", () => {
+    Mediaq({ onUpdate, mediaQueries });
+
+    const callArgs = (window.matchMedia as jasmine.Spy).calls.allArgs();
+
+    expect(window.matchMedia).toHaveBeenCalledTimes(2);
+    expect(callArgs).toEqual([
+      ["only screen and (min-width: 600px)"],
+      ["only screen and (max-width: 400px)"],
+    ]);
   });
 
   describe("start", () => {
-    it("starts listening", () => {
-      const mediaq = new Mediaq();
+    describe("when not already started", () => {
+      it("sets listening to true", () => {
+        const mediaq = Mediaq({ onUpdate, mediaQueries });
 
-      expect(mediaq.listening).toBeFalse();
+        expect(mediaq.isListening()).toBe(false);
 
-      mediaq.start();
+        mediaq.start();
 
-      expect(mediaq.listening).toBeTrue();
+        expect(mediaq.isListening()).toBe(true);
+      });
+
+      it("adds event listeners to mediaQueryLists", () => {
+        const mediaQueryLists = [
+          create(mediaQueries[0].media)(false),
+          create(mediaQueries[1].media)(false),
+        ];
+
+        window.matchMedia = jasmine
+          .createSpy()
+          .and.returnValues(...mediaQueryLists);
+
+        const mediaq = Mediaq({ onUpdate, mediaQueries });
+
+        mediaq.start();
+
+        expect(mediaQueryLists[0].addEventListener).toHaveBeenCalledOnceWith(
+          "change",
+          jasmine.any(Function)
+        );
+        expect(mediaQueryLists[1].addEventListener).toHaveBeenCalledOnceWith(
+          "change",
+          jasmine.any(Function)
+        );
+      });
+
+      it("calls onUpdate", () => {
+        const mediaQueryLists = [
+          create(mediaQueries[0].media)(false),
+          create(mediaQueries[1].media)(true),
+        ];
+
+        window.matchMedia = jasmine
+          .createSpy()
+          .and.returnValues(...mediaQueryLists);
+
+        const mediaq = Mediaq({ onUpdate, mediaQueries });
+
+        mediaq.start();
+
+        expect(onUpdate).toHaveBeenCalledTimes(2);
+        expect(onUpdate.calls.allArgs()).toEqual([
+          [{ ...mediaQueries[0], matches: false }],
+          [{ ...mediaQueries[1], matches: true }],
+        ]);
+      });
     });
 
-    it("throws if already listening", () => {
-      const mediaq = new Mediaq().start();
+    describe("when already started", () => {
+      it("doesn't add event listeners to mediaQueryLists", () => {
+        const mediaQueryLists = [
+          create(mediaQueries[0].media)(false),
+          create(mediaQueries[1].media)(false),
+        ];
 
-      expect(() => mediaq.start()).toThrow(
-        new Error("This Mediaq instance has already started")
-      );
+        window.matchMedia = jasmine
+          .createSpy()
+          .and.returnValues(...mediaQueryLists);
+
+        const mediaq = Mediaq({ onUpdate, mediaQueries });
+
+        mediaq.start();
+        mediaq.start();
+
+        expect(mediaQueryLists[0].addEventListener).toHaveBeenCalledOnceWith(
+          "change",
+          jasmine.any(Function)
+        );
+        expect(mediaQueryLists[1].addEventListener).toHaveBeenCalledOnceWith(
+          "change",
+          jasmine.any(Function)
+        );
+      });
+
+      it("doesn't call onUpdate", () => {
+        const mediaq = Mediaq({ onUpdate, mediaQueries });
+
+        mediaq.start();
+        mediaq.start();
+
+        expect(onUpdate).toHaveBeenCalledTimes(2);
+      });
     });
   });
 
   describe("stop", () => {
-    it("stops listening", () => {
-      const mediaq = new Mediaq().start();
+    describe("when already started", () => {
+      it("sets listening to false", () => {
+        const mediaq = Mediaq({ onUpdate, mediaQueries });
 
-      expect(mediaq.listening).toBeTrue();
+        expect(mediaq.isListening()).toBe(false);
 
-      mediaq.stop();
+        mediaq.start();
+        mediaq.stop();
 
-      expect(mediaq.listening).toBeFalse();
-    });
+        expect(mediaq.isListening()).toBe(false);
+      });
 
-    it("throws if not already listening", () => {
-      const mediaq = new Mediaq();
+      it("removes event listeners from mediaQueryLists", () => {
+        const mediaQueryLists = [
+          create(mediaQueries[0].media)(false),
+          create(mediaQueries[1].media)(false),
+        ];
 
-      expect(() => mediaq.stop()).toThrow(
-        new Error("This Mediaq instance is not started")
-      );
+        window.matchMedia = jasmine
+          .createSpy()
+          .and.returnValues(...mediaQueryLists);
+
+        const mediaq = Mediaq({ onUpdate, mediaQueries });
+
+        mediaq.start();
+        mediaq.stop();
+
+        expect(mediaQueryLists[0].removeEventListener).toHaveBeenCalledOnceWith(
+          "change",
+          jasmine.any(Function)
+        );
+        expect(mediaQueryLists[1].removeEventListener).toHaveBeenCalledOnceWith(
+          "change",
+          jasmine.any(Function)
+        );
+      });
     });
   });
 });

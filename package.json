@@ -1,19 +1,19 @@
 {
   "name": "mediaq",
   "version": "1.1.0",
-  "description": "Listen to media queries updates in JavaScript",
-  "main": "./dist/mediaq.js",
-  "types": "./dist/types/mediaq.d.ts",
+  "description": "Listen to media query updates in JavaScript",
+  "main": "dist/mediaq.js",
+  "types": "types/mediaq.d.ts",
   "files": [
     "dist/mediaq.js",
-    "dist/types",
+    "types/mediaq.d.ts",
     "README.md",
     "LICENSE.md"
   ],
   "scripts": {
     "test": "karma start",
     "build": "webpack --config webpack.config.js",
-    "prettier": "prettier --write './{src,test}/**/*.ts' './webpack.config.js'",
+    "format": "prettier --write './{src,test}/**/*.ts' './webpack.config.js'",
     "preversion": "npm test",
     "version": "npm run build",
     "postversion": "git push --tags"
@@ -23,7 +23,6 @@
     "url": "git+https://github.com/maroun-baydoun/mediaq.git"
   },
   "keywords": [
-    "typescript",
     "mediaquery",
     "responsive",
     "javascript"
@@ -38,20 +37,17 @@
   },
   "homepage": "https://dev.maroun-baydoun.com/mediaq/",
   "devDependencies": {
-    "@types/jasmine": "3.5.12",
+    "@types/jasmine": "3.6.8",
     "clean-webpack-plugin": "3.0.0",
     "jasmine-core": "3.6.0",
-    "karma": "6.1.1",
+    "karma": "6.3.1",
     "karma-chrome-launcher": "3.1.0",
     "karma-jasmine": "4.0.1",
-    "karma-typescript": "5.4.0",
+    "karma-typescript": "5.5.1",
     "prettier": "2.2.1",
-    "ts-loader": "8.0.17",
-    "typescript": "4.2.2",
-    "webpack": "5.24.2",
+    "ts-loader": "8.0.18",
+    "typescript": "4.2.3",
+    "webpack": "5.28.0",
     "webpack-cli": "4.5.0"
-  },
-  "dependencies": {
-    "evented-ts": "2.0.0"
   }
 }

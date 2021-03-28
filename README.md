@@ -1,11 +1,10 @@
 # Mediaq
-Listen to media queries updates in JavaScript
+Listen to media query updates in JavaScript
 
 [![npm version](https://badge.fury.io/js/mediaq.svg)](https://badge.fury.io/js/mediaq)
 
-#### Basic usage
 
-##### Install
+#### Install
 
 ```
 npm i mediaq
@@ -16,42 +15,48 @@ Or
 yarn add mediaq
 ```
 
-##### Define some media queries in a stylesheet
-
-```css
-@media only screen and (min-width: 760px){
-    mediaq {
-     content: "desktop"; /* custom name given to the media query */
-    }
-}
-@media only screen and (max-width: 480px){
-    mediaq {
-     content: "mobile";
-    }
-}
-```
-##### Import Mediaq
+#### Use
 
 ```js
-import { Mediaq, MediaQuery } from "mediaq";
+import { Mediaq } from "mediaq";
+
+const mediaq = Mediaq({
+  onUpdate: (e) => console.log(e.name, e.media, e.matches),
+  mediaQueries: [{
+    name: "mobile",
+    media: "only screen and (max-width: 600px)"
+  }, {
+    name: "desktop",
+    media: "only screen and (min-width: 600px)"
+  }]
+});
+
+
+mediaq.start();
+
+// When done listening 
+mediaq.stop();
 ```
-##### Initialize a Mediaq instance
-
-```js
-let mediaq = new Mediaq()
-                 .fromStyleSheets(href?: RegExp)
-                 .mediaQuery(media: string, name?: string)
-                 .onMediaQueryMatchedChanged((mediaQuery: MediaQuery) => { })
-                 .start();
-```
 
 
-#### Methods
-* ```fromStyleSheets(href?: RegExp)``` : searches for media queries defined in the stylesheets loaded in the document.
-* ```mediaQuery(media: string, name?: string)``` : adds a media query that was not defined in stylesheets.
-* ```onMediaQueryMatchedChanged(listener: MediaQueryMatchChangedListener)``` : adds a listener that will triggered every time a media query is matched or stops being matched.
-* ```offMediaQueryMatchedChanged(listener?: MediaQueryMatchChangedListener)``` : removes a listener that was added by ```onMediaQueryMatchedChanged(listener: MediaQueryMatchChangedListener)```, or all listeners if a listener is not provided.
-* ```start()``` : starts listening to changes in media queries.
-* ```stop()``` : stops listening to changes in media queries.
-* ```mediaQueries()``` : returns the media queries added by ```fromStyleSheets()``` and ```mediaQuery(media: string)``` methods.
+#### API
 
+ The `Mediaq` functions expects a single object argument with `onUpdate` and `mediaQueries` keys.
+
+ * `onUpdate` takes one argument having the `media`, `name` and `matches` properties.
+ * `mediaQueries` is an array of objects having the `name` and `media` keys.
+
+It returns an object having the `start` and `stop` methods.
+
+* `start` calls `onUpdate` with the current state of mediaquery matches and listens for future updates. Calling this method repeatedly has no effect.
+* `stop` ceases listening for mediaquery updates. Calling this method repeatedly has no effect.
+
+
+#### Demo
+
+See it running in action in this [demo](https://dev.maroun-baydoun.com/mediaq/#demo).
+
+
+#### License
+MIT
+Copyright (c) [Maroun Baydoun](https://maroun-baydoun.com/).
