@@ -23,9 +23,7 @@
   font-style: normal;
   font-display: swap;
   font-weight: 400;
-  src:
-    local('Roboto'),
-    local('Roboto-Regular'), url(176f8f5bd5f02b3abfcf894955d7e919.woff2) format('woff2'), url(49ae34d4cc6b98c00c69ab4c41de3e0c.woff) format('woff');
+  src: url(4673b4537a84c7f7a130799aa6af329b.woff2) format('woff2'), url(9b78ea3bc4f00e508f01331aa0733db8.woff) format('woff');
   
 }
 
@@ -35,9 +33,7 @@
   font-style: normal;
   font-display: swap;
   font-weight: 500;
-  src:
-    local('Roboto Medium'),
-    local('Roboto-Medium'), url(f5b74d7ffcdf85b9dd60130fa0b2c087.woff2) format('woff2'), url(cea99d3e3e13a3a599a015c29f1046d0.woff) format('woff');
+  src: url(869888415d0b1a99ae5c7ac7c4575ccf.woff2) format('woff2'), url(ddd11dabeca881d49f5966f9a769dc97.woff) format('woff');
   
 }
 
