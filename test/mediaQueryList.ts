@@ -12,7 +12,7 @@ export const create = (mediaQuery: string, inheritsEvenTarget = true) => {
         .and.callFake((event: string, listener: Function) =>
           event in listeners
             ? listeners[event].push(listener)
-            : (listeners[event] = [listener])
+            : (listeners[event] = [listener]),
         ),
       removeEventListener: jasmine.createSpy(),
     }),

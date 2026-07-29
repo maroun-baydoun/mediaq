@@ -24,11 +24,11 @@ export const Mediaq = ({ onUpdate, mediaQueries }: MediaqArgs) => {
       ...prev,
       [mediaQuery.media]: mediaQuery,
     }),
-    {}
+    {},
   );
 
   const mediaQueryLists = Object.keys(indexedMediaQueries).map((media) =>
-    window.matchMedia(media)
+    window.matchMedia(media),
   );
 
   function mediaQueryListChangeListener(event: MediaQueryListEvent): void {
@@ -75,7 +75,7 @@ export const Mediaq = ({ onUpdate, mediaQueries }: MediaqArgs) => {
     for (const mediaQueryList of mediaQueryLists) {
       mediaQueryList.removeEventListener(
         "change",
-        mediaQueryListChangeListener
+        mediaQueryListChangeListener,
       );
     }
 

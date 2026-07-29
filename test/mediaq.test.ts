@@ -65,11 +65,11 @@ describe("Mediaq", () => {
 
         expect(mediaQueryLists[0].addEventListener).toHaveBeenCalledOnceWith(
           "change",
-          jasmine.any(Function)
+          jasmine.any(Function),
         );
         expect(mediaQueryLists[1].addEventListener).toHaveBeenCalledOnceWith(
           "change",
-          jasmine.any(Function)
+          jasmine.any(Function),
         );
       });
 
@@ -113,11 +113,11 @@ describe("Mediaq", () => {
 
         expect(mediaQueryLists[0].addEventListener).toHaveBeenCalledOnceWith(
           "change",
-          jasmine.any(Function)
+          jasmine.any(Function),
         );
         expect(mediaQueryLists[1].addEventListener).toHaveBeenCalledOnceWith(
           "change",
-          jasmine.any(Function)
+          jasmine.any(Function),
         );
       });
 
@@ -162,11 +162,11 @@ describe("Mediaq", () => {
 
         expect(mediaQueryLists[0].removeEventListener).toHaveBeenCalledOnceWith(
           "change",
-          jasmine.any(Function)
+          jasmine.any(Function),
         );
         expect(mediaQueryLists[1].removeEventListener).toHaveBeenCalledOnceWith(
           "change",
-          jasmine.any(Function)
+          jasmine.any(Function),
         );
       });
     });
