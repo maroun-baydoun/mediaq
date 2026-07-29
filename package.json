@@ -4,6 +4,7 @@
   "description": "Listen to media query updates in JavaScript",
   "main": "dist/mediaq.js",
   "types": "dist/mediaq.d.ts",
+  "type": "module",
   "files": [
     "dist/mediaq.js",
     "dist/mediaq.d.ts",

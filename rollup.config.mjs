@@ -6,10 +6,7 @@ export default {
   input: "src/mediaq.ts",
   output: {
     file: "dist/mediaq.js",
-    format: "umd",
-    name: "mediaq",
-    exports: "named",
-    amd: { id: "mediaq" },
+    format: "esm",
   },
   plugins: [
     nodeResolve(),
