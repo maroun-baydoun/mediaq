@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mediaq Harness</title>
+  </head>
+  <body>
+    <main>
+      <h1>Media Queries</h1>
+      <p>
+        <button type="button" data-action="stop-observing">
+          Stop observing
+        </button>
+        <button type="button" data-action="start-observing">
+          Start observing
+        </button>
+      </p>
+      <form aria-label="Media query states">
+        <fieldset>
+          <legend>Matching</legend>
+          <label>
+            <input type="checkbox" disabled data-query="desktop" />
+            Desktop viewport
+          </label>
+          <br />
+          <label>
+            <input type="checkbox" disabled data-query="landscape" />
+            Landscape orientation
+          </label>
+          <br />
+          <label>
+            <input type="checkbox" disabled data-query="mobile" />
+            Mobile viewport
+          </label>
+          <br />
+          <label>
+            <input type="checkbox" disabled data-query="dark-mode" />
+            Dark color scheme
+          </label>
+          <br />
+          <label>
+            <input type="checkbox" disabled data-query="reduced-motion" />
+            Reduced motion
+          </label>
+          <br />
+          <label>
+            <input type="checkbox" disabled data-query="print" />
+            Print media
+          </label>
+          <br />
+          <label>
+            <input type="checkbox" disabled data-query="broken" />
+            Broken viewport query
+          </label>
+        </fieldset>
+      </form>
+    </main>
+
+    <script type="module" src="./harness.js"></script>
+  </body>
+</html>

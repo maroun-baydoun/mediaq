@@ -1,6 +1,7 @@
 dist/**/*
-types/**/*
 node_modules/**/*
 .DS_Store 
 **/*.js
-!karma.conf.js
+!test/harness/harness.js
+!rollup.config.js
+test-results/**/*
