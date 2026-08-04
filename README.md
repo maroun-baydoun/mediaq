@@ -7,13 +7,21 @@ Listen to media query updates in JavaScript
 #### Install
 
 ```
-npm i mediaq
+pnpm add mediaq
 ```
 Or
 
 ```
-yarn add mediaq
+npm i mediaq
 ```
+
+#### Workspace
+
+This repository is a pnpm workspace with:
+
+* `packages/mediaq` for the library
+* `apps/demo` for the demo app
+* `packages/test` for the Playwright fixture and tests
 
 #### Use
 
@@ -54,7 +62,17 @@ It returns an object having the `start` and `stop` methods.
 
 #### Demo
 
-See it running in action in this [demo](https://dev.maroun-baydoun.com/mediaq/#demo).
+Run the local demo app with:
+
+```
+pnpm demo
+```
+
+Run the browser tests with:
+
+```
+pnpm test
+```
 
 
 #### License

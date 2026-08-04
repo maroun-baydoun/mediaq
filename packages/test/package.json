@@ -1,0 +1,17 @@
+{
+  "name": "mediaq-test",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4173",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "mediaq": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@playwright/test": "catalog:",
+    "vite": "catalog:"
+  }
+}

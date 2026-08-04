@@ -1,6 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 
-async function openHarness(
+async function openFixture(
   page: Page,
   options: {
     viewport?: { width: number; height: number };
@@ -26,12 +26,12 @@ async function openHarness(
     await page.emulateMedia(emulateMedia);
   }
 
-  await page.goto("/test/harness/index.html");
+  await page.goto("/");
 }
 
 test.describe("Mediaq", () => {
   test("desktop viewport query matches at wide widths", async ({ page }) => {
-    await openHarness(page, { viewport: { width: 800, height: 600 } });
+    await openFixture(page, { viewport: { width: 800, height: 600 } });
 
     await expect(
       page.getByRole("checkbox", { name: "Desktop viewport" }),
@@ -42,7 +42,7 @@ test.describe("Mediaq", () => {
   });
 
   test("mobile viewport query matches at narrow widths", async ({ page }) => {
-    await openHarness(page, { viewport: { width: 375, height: 600 } });
+    await openFixture(page, { viewport: { width: 375, height: 600 } });
 
     await expect(
       page.getByRole("checkbox", { name: "Desktop viewport" }),
@@ -53,7 +53,7 @@ test.describe("Mediaq", () => {
   });
 
   test("a query can become matching after a viewport change", async ({ page }) => {
-    await openHarness(page, { viewport: { width: 375, height: 600 } });
+    await openFixture(page, { viewport: { width: 375, height: 600 } });
 
     await expect(
       page.getByRole("checkbox", { name: "Desktop viewport" }),
@@ -69,7 +69,7 @@ test.describe("Mediaq", () => {
   test("stopping Mediaq prevents viewport changes from updating", async ({
     page,
   }) => {
-    await openHarness(page, { viewport: { width: 800, height: 600 } });
+    await openFixture(page, { viewport: { width: 800, height: 600 } });
 
     await expect(
       page.getByRole("checkbox", { name: "Desktop viewport" }),
@@ -90,7 +90,7 @@ test.describe("Mediaq", () => {
   test("dark color scheme query matches when dark mode is emulated", async ({
     page,
   }) => {
-    await openHarness(page, {
+    await openFixture(page, {
       viewport: { width: 800, height: 600 },
       colorScheme: "dark",
     });
@@ -103,7 +103,7 @@ test.describe("Mediaq", () => {
   test("reduced motion query matches when reduced motion is emulated", async ({
     page,
   }) => {
-    await openHarness(page, {
+    await openFixture(page, {
       viewport: { width: 800, height: 600 },
       reducedMotion: "reduce",
     });
@@ -114,13 +114,15 @@ test.describe("Mediaq", () => {
   });
 
   test("print media query stays off in screen mode", async ({ page }) => {
-    await openHarness(page, { viewport: { width: 800, height: 600 } });
+    await openFixture(page, { viewport: { width: 800, height: 600 } });
 
-    await expect(page.getByRole("checkbox", { name: "Print media" })).not.toBeChecked();
+    await expect(
+      page.getByRole("checkbox", { name: "Print media" }),
+    ).not.toBeChecked();
   });
 
   test("broken media query stays off", async ({ page }) => {
-    await openHarness(page, { viewport: { width: 800, height: 600 } });
+    await openFixture(page, { viewport: { width: 800, height: 600 } });
 
     await expect(
       page.getByRole("checkbox", { name: "Broken viewport query" }),
@@ -128,7 +130,7 @@ test.describe("Mediaq", () => {
   });
 
   test("two queries can match at the same time", async ({ page }) => {
-    await openHarness(page, { viewport: { width: 800, height: 600 } });
+    await openFixture(page, { viewport: { width: 800, height: 600 } });
 
     await expect(
       page.getByRole("checkbox", { name: "Desktop viewport" }),

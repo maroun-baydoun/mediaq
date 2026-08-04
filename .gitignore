@@ -1,7 +1,4 @@
-dist/**/*
-node_modules/**/*
-.DS_Store 
-**/*.js
-!test/harness/harness.js
-!rollup.config.js
-test-results/**/*
+**/dist/**/*
+**/node_modules/**/*
+.DS_Store
+**/test-results/**/*

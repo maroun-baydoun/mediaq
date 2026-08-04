@@ -1,0 +1,44 @@
+{
+  "name": "mediaq",
+  "version": "2.0.0",
+  "description": "Listen to media query updates in JavaScript",
+  "main": "dist/mediaq.js",
+  "types": "dist/mediaq.d.ts",
+  "type": "module",
+  "files": [
+    "dist/mediaq.js",
+    "dist/mediaq.d.ts",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "scripts": {
+    "build:clean": "rimraf dist",
+    "build:js": "vite build",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist --project tsconfig.json",
+    "build": "pnpm run build:clean && pnpm run build:js && pnpm run build:types"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maroun-baydoun/mediaq.git"
+  },
+  "keywords": [
+    "mediaquery",
+    "responsive",
+    "javascript"
+  ],
+  "author": {
+    "name": "Maroun Baydoun",
+    "url": "https://maroun-baydoun.com/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maroun-baydoun/mediaq/issues"
+  },
+  "homepage": "https://dev.maroun-baydoun.com/mediaq/",
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "rimraf": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:"
+  }
+}
