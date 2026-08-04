@@ -52,7 +52,9 @@ test.describe("Mediaq", () => {
     ).toBeChecked();
   });
 
-  test("a query can become matching after a viewport change", async ({ page }) => {
+  test("a query can become matching after a viewport change", async ({
+    page,
+  }) => {
     await openFixture(page, { viewport: { width: 375, height: 600 } });
 
     await expect(
