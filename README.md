@@ -1,80 +1,25 @@
 # Mediaq
-Listen to media query updates in JavaScript
 
-[![npm version](https://badge.fury.io/js/mediaq.svg)](https://badge.fury.io/js/mediaq)
+Mediaq is a small browser library for listening to media query changes in JavaScript.
 
+This repository contains:
 
-#### Install
+- `packages/mediaq` for the publishable library
+- `apps/demo` for the demo app
+- `packages/test` for the Playwright fixture and browser tests
 
-```
-pnpm add mediaq
-```
-Or
+## Development
 
-```
-npm i mediaq
-```
-
-#### Workspace
-
-This repository is a pnpm workspace with:
-
-* `packages/mediaq` for the library
-* `apps/demo` for the demo app
-* `packages/test` for the Playwright fixture and tests
-
-#### Use
-
-```js
-import { Mediaq } from "mediaq";
-
-const mediaq = Mediaq({
-  onUpdate: (e) => console.log(e.name, e.media, e.matches),
-  mediaQueries: [{
-    name: "mobile",
-    media: "only screen and (max-width: 600px)"
-  }, {
-    name: "desktop",
-    media: "only screen and (min-width: 600px)"
-  }]
-});
-
-
-mediaq.start();
-
-// When done listening 
-mediaq.stop();
-```
-
-
-#### API
-
- The `Mediaq` function expects a single object argument with `onUpdate` and `mediaQueries` keys.
-
- * `onUpdate` takes one argument having the `media`, `name` and `matches` properties.
- * `mediaQueries` is an array of objects having the `name` and `media` keys.
-
-It returns an object having the `start` and `stop` methods.
-
-* `start` calls `onUpdate` with the current state of mediaquery matches and listens for future updates. Calling this method repeatedly has no effect.
-* `stop` ceases listening for mediaquery updates. Calling this method repeatedly has no effect.
-
-
-#### Demo
-
-Run the local demo app with:
-
-```
+```bash
+pnpm install
 pnpm demo
-```
-
-Run the browser tests with:
-
-```
 pnpm test
 ```
 
+## Demo
 
-#### License
-MIT
-Copyright (c) [Maroun Baydoun](https://maroun-baydoun.com/).
+The demo app shows the library running in the browser. Use `pnpm demo` to start it locally.
+
+## Tests
+
+The browser tests run from `packages/test`. Use `pnpm test` from the workspace root.
