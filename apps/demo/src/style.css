@@ -71,7 +71,8 @@
   }
 
   main {
-    @apply flex flex-1 items-start;
+    @apply flex flex-1 flex-col items-start;
+    @apply gap-12;
     @apply py-10;
     @apply sm:py-14;
     @apply lg:py-20;
@@ -139,7 +140,7 @@
 
 @layer components {
   .page-section {
-    @apply flex flex-col gap-6;
+    @apply flex w-full flex-col gap-6;
     @apply border-t border-border/80;
     @apply py-10;
     @apply sm:py-12;
@@ -152,5 +153,71 @@
   .section-header-intro {
     @apply mt-3 text-base leading-7 text-muted;
     @apply sm:mt-4 sm:text-lg;
+  }
+
+  .media-grid-summary {
+    @apply rounded-2xl border border-border/80;
+    @apply bg-surface-elevated/60 px-4 py-4;
+  }
+
+  .media-grid-summary-copy {
+    @apply m-0 text-lg leading-7;
+  }
+
+  .media-grid-summary-count {
+    @apply text-3xl font-semibold tracking-tight;
+    @apply text-foreground;
+  }
+
+  .media-grid-summary-separator {
+    @apply text-3xl font-semibold tracking-tight;
+    @apply text-muted;
+  }
+
+  .media-grid-summary-total {
+    @apply text-3xl font-semibold tracking-tight;
+    @apply text-foreground;
+  }
+
+  .media-grid {
+    @apply grid gap-4;
+    @apply md:grid-cols-2 xl:grid-cols-3;
+  }
+
+  .media-card {
+    @apply rounded-2xl border border-border/80;
+    @apply bg-surface-elevated/80 p-4;
+    @apply transition-colors;
+  }
+
+  .media-card[data-matches="true"] {
+    @apply border-accent/60 bg-accent/10;
+  }
+
+  .media-card-head {
+    @apply flex items-start justify-between gap-3;
+  }
+
+  .media-card-title {
+    @apply text-sm font-semibold uppercase tracking-[0.2em];
+    @apply text-foreground;
+  }
+
+  .media-card-status {
+    @apply shrink-0 rounded-full border border-border/80 px-3 py-1;
+    @apply text-[0.7rem] tracking-[0.2em] text-muted;
+  }
+
+  .media-card[data-matches="true"] .media-card-status {
+    @apply border-accent/60 bg-accent/20 text-foreground;
+  }
+
+  .media-card-query {
+    @apply mt-3 break-words font-mono text-sm leading-6;
+    @apply text-snippet-foreground;
+  }
+
+  .media-card-note {
+    @apply mt-3 text-sm leading-6 text-muted;
   }
 }

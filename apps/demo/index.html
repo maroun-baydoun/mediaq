@@ -52,6 +52,50 @@
             <snippet-copy-button>Copy</snippet-copy-button>
           </snippet-card>
         </section>
+
+        <section
+          class="page-section"
+          aria-labelledby="live-grid-heading"
+          data-project-specific
+        >
+          <div class="section-header">
+            <div class="flex items-center gap-3">
+              <span
+                class="relative inline-flex h-3 w-3"
+                aria-hidden="true"
+              >
+                <span
+                  class="absolute inline-flex h-full w-full rounded-full bg-accent/60 animate-ping opacity-75"
+                ></span>
+                <span
+                  class="relative inline-flex h-3 w-3 rounded-full bg-accent"
+                ></span>
+              </span>
+              <h3 id="live-grid-heading">Live queries</h3>
+            </div>
+            <p class="section-header-intro">
+              A live demo of a few media queries in your browser.
+            </p>
+          </div>
+
+          <div class="media-grid-summary">
+            <p class="media-grid-summary-copy">
+              <span class="media-grid-summary-count" data-media-summary-count>
+                0
+              </span>
+              <span class="media-grid-summary-separator" aria-hidden="true">
+                /
+              </span>
+              <span class="media-grid-summary-total" data-media-summary-total>
+                8
+              </span>
+              media queries
+              are matching
+            </p>
+          </div>
+
+          <div class="media-grid" data-media-grid></div>
+        </section>
       </main>
 
       <section class="page-section">
