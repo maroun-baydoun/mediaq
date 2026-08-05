@@ -17,18 +17,18 @@
         </div>
         <nav aria-label="Project links">
           <a
-            href="https://badge.fury.io/js/mediaq"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <img alt="npm version" src="https://badge.fury.io/js/mediaq.svg" />
-          </a>
-          <a
             href="https://github.com/maroun-baydoun/mediaq"
             rel="noreferrer"
             target="_blank"
           >
             ★ Github
+          </a>
+          <a
+            href="https://badge.fury.io/js/mediaq"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <img alt="npm version" src="https://badge.fury.io/js/mediaq.svg" />
           </a>
         </nav>
       </header>
@@ -60,10 +60,7 @@
         >
           <div class="section-header">
             <div class="flex items-center gap-3">
-              <span
-                class="relative inline-flex h-3 w-3"
-                aria-hidden="true"
-              >
+              <span class="relative inline-flex h-3 w-3" aria-hidden="true">
                 <span
                   class="absolute inline-flex h-full w-full rounded-full bg-accent/60 animate-ping opacity-75"
                 ></span>
@@ -89,8 +86,7 @@
               <span class="media-grid-summary-total" data-media-summary-total>
                 8
               </span>
-              media queries
-              are matching
+              media queries are matching
             </p>
           </div>
 
@@ -130,6 +126,49 @@
             </snippet-card>
           </div>
         </chip-tabs>
+      </section>
+
+      <section class="page-section" aria-labelledby="api-heading">
+        <div class="section-header">
+          <h3 id="api-heading">API</h3>
+          <p class="section-header-intro">
+            Mediaq exposes a small runtime API.
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="space-y-3">
+            <h4>Mediaq</h4>
+            <p class="text-sm leading-6 text-muted">
+              Create a listener from a set of media queries and an update
+              callback.
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            <h4>start()</h4>
+            <p class="text-sm leading-6 text-muted">
+              Method on the object returned by <code>Mediaq</code> that begins
+              listening to the media queries you pass in.
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            <h4>stop()</h4>
+            <p class="text-sm leading-6 text-muted">
+              Method on the object returned by <code>Mediaq</code> that stops
+              listening for future media query updates.
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            <h4>isListening()</h4>
+            <p class="text-sm leading-6 text-muted">
+              Method on the object returned by <code>Mediaq</code> that checks
+              whether the listener is currently active.
+            </p>
+          </div>
+        </div>
       </section>
 
       <footer>

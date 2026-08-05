@@ -107,6 +107,11 @@
     @apply text-muted;
   }
 
+  h4 {
+    @apply text-sm font-medium uppercase tracking-[0.3em];
+    @apply text-muted;
+  }
+
   footer {
     @apply flex flex-col gap-3;
     @apply border-t border-border/80 pt-5;
@@ -153,6 +158,10 @@
   .section-header-intro {
     @apply mt-3 text-base leading-7 text-muted;
     @apply sm:mt-4 sm:text-lg;
+  }
+
+  .page-section[aria-labelledby="api-heading"] h4 {
+    @apply normal-case tracking-normal text-foreground;
   }
 
   .media-grid-summary {
