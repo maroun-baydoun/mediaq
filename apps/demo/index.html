@@ -3,13 +3,123 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Mediaq Demo</title>
+    <meta
+      name="description"
+      content="Mediaq is an open source JavaScript library for tracking media query changes."
+    />
+    <title>Mediaq | Track Media Query Changes in JavaScript</title>
   </head>
   <body>
-    <main>
-      <h1>Mediaq Demo</h1>
-    </main>
+    <div class="page-shell">
+      <header>
+        <div>
+          <h1>Mediaq</h1>
+        </div>
+        <nav aria-label="Project links">
+          <a
+            href="https://badge.fury.io/js/mediaq"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <img alt="npm version" src="https://badge.fury.io/js/mediaq.svg" />
+          </a>
+          <a
+            href="https://github.com/maroun-baydoun/mediaq"
+            rel="noreferrer"
+            target="_blank"
+          >
+            ★ Github
+          </a>
+        </nav>
+      </header>
 
+      <main>
+        <section class="hero">
+          <div class="hero-content">
+            <h2 class="hero-title">Track media query changes in JavaScript.</h2>
+            <p class="hero-intro">
+              Mediaq keeps track of a set of media queries and lets you know
+              when they change. It is small, library-agnostic, and easy to use.
+            </p>
+          </div>
+
+          <snippet-card title="Example" language-label="TypeScript">
+            <div data-snippet-header>
+              <span data-snippet-title></span>
+              <span data-snippet-language></span>
+            </div>
+            <pre><code data-code="mediaq" data-language="typescript"></code></pre>
+            <snippet-copy-button>Copy</snippet-copy-button>
+          </snippet-card>
+        </section>
+      </main>
+
+      <section class="page-section">
+        <div class="section-header">
+          <h3>Install</h3>
+          <p class="section-header-intro">
+            Install Mediaq with the package manager of your choice.
+          </p>
+        </div>
+
+        <chip-tabs data-default-tab="npm" id="install-tabs">
+          <div data-tablist aria-label="Package manager">
+            <button type="button" data-tab="npm">npm</button>
+            <button type="button" data-tab="pnpm">pnpm</button>
+            <button type="button" data-tab="yarn">yarn</button>
+          </div>
+
+          <div data-tab-panels>
+            <snippet-card data-tab-panel="npm" data-active="true">
+              <pre><code data-code="install-npm" data-language="shell"></code></pre>
+              <snippet-copy-button> Copy </snippet-copy-button>
+            </snippet-card>
+
+            <snippet-card data-tab-panel="pnpm" data-active="false">
+              <pre><code data-code="install-pnpm" data-language="shell"></code></pre>
+              <snippet-copy-button> Copy </snippet-copy-button>
+            </snippet-card>
+
+            <snippet-card data-tab-panel="yarn" data-active="false">
+              <pre><code data-code="install-yarn" data-language="shell"></code></pre>
+              <snippet-copy-button> Copy </snippet-copy-button>
+            </snippet-card>
+          </div>
+        </chip-tabs>
+      </section>
+
+      <footer>
+        <nav>
+          <a
+            class="transition-colors hover:text-foreground-strong"
+            href="https://www.npmjs.com/package/mediaq"
+            rel="noreferrer"
+            target="_blank"
+          >
+            npm
+          </a>
+          <a
+            class="transition-colors hover:text-foreground-strong"
+            href="https://github.com/maroun-baydoun/mediaq"
+            rel="noreferrer"
+            target="_blank"
+          >
+            github
+          </a>
+        </nav>
+        <span>
+          Created by
+          <a
+            class="transition-colors hover:text-foreground-strong"
+            href="https://maroun-baydoun.com/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Maroun Baydoun
+          </a>
+        </span>
+      </footer>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

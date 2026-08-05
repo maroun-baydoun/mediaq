@@ -1,0 +1,50 @@
+@reference "../../style.css";
+
+@layer base {
+  chip-tabs {
+    @apply block;
+    @apply w-full;
+  }
+
+  chip-tabs [data-tablist] {
+    @apply flex flex-wrap;
+    @apply gap-2;
+  }
+
+  chip-tabs [role="tab"] {
+    @apply rounded-lg border border-border/80;
+    @apply px-3 py-1;
+    @apply text-[0.7rem] font-medium leading-none tracking-[0.2em];
+    @apply text-muted;
+    @apply cursor-pointer transition-colors;
+    @apply hover:border-border hover:text-foreground;
+    background: color-mix(
+      in oklab,
+      var(--color-surface-elevated) 82%,
+      black 18%
+    );
+  }
+
+  chip-tabs [role="tab"][aria-selected="true"] {
+    @apply font-semibold;
+    border-color: color-mix(in oklab, var(--color-accent) 55%, white 45%);
+    background: color-mix(in oklab, var(--color-accent) 52%, black 48%);
+    @apply text-foreground;
+  }
+
+  chip-tabs [data-tab-panels] {
+    @apply grid;
+    @apply mt-6;
+    @apply justify-items-stretch;
+  }
+
+  chip-tabs [data-tab-panel] {
+    @apply col-start-1;
+    @apply row-start-1;
+  }
+
+  chip-tabs [data-tab-panel]:not([data-active="true"]) {
+    @apply invisible;
+    @apply pointer-events-none;
+  }
+}

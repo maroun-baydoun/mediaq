@@ -1,0 +1,22 @@
+@reference "../../style.css";
+
+@layer base {
+  snippet-copy-button {
+    @apply inline-flex;
+  }
+
+  snippet-copy-button[data-position="bottom-right"] {
+    @apply absolute bottom-4 right-4;
+  }
+
+  snippet-copy-button > button {
+    @apply inline-flex items-center justify-center;
+    @apply rounded-full border border-border/80 bg-surface-elevated;
+    @apply px-3 py-1;
+    @apply text-[0.7rem] tracking-[0.2em] text-muted;
+    @apply cursor-pointer select-none transition-colors;
+    @apply hover:border-border hover:text-foreground;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60;
+    @apply focus-visible:ring-offset-2 focus-visible:ring-offset-surface-elevated;
+  }
+}
