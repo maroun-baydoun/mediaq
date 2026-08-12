@@ -13,7 +13,8 @@ function demoCodePlugin() {
         (_match, attrs: string, key: string) => {
           const snippet = snippets[key as keyof typeof snippets];
           const languageMatch = attrs.match(/data-language="([^"]+)"/);
-          const language = languageMatch?.[1] === "shell" ? "shell" : "typescript";
+          const language =
+            languageMatch?.[1] === "shell" ? "shell" : "typescript";
 
           if (!snippet) {
             return `<code${attrs}></code>`;

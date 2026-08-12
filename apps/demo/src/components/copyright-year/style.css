@@ -1,0 +1,7 @@
+@reference "../../style.css";
+
+@layer base {
+  copyright-year {
+    display: contents;
+  }
+}

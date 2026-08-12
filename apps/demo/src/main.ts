@@ -5,6 +5,7 @@ import { Mediaq } from "mediaq";
 import "./components/snippet-copy-button";
 import "./components/snippet-card";
 import "./components/chip-tabs";
+import "./components/copyright-year";
 
 import { mediaQueries } from "./media-queries";
 
@@ -41,17 +42,19 @@ if (mediaGrid && mediaSummaryCount && mediaSummaryTotal) {
 
   const cards = new Map<number, MediaCard>();
 
-  mediaGrid.querySelectorAll<HTMLElement>("[data-media-card]").forEach((card) => {
-    const index = Number(card.dataset.mediaIndex);
-    const status = card.querySelector<HTMLElement>("[data-media-state]");
+  mediaGrid
+    .querySelectorAll<HTMLElement>("[data-media-card]")
+    .forEach((card) => {
+      const index = Number(card.dataset.mediaIndex);
+      const status = card.querySelector<HTMLElement>("[data-media-state]");
 
-    if (!Number.isNaN(index) && status) {
-      cards.set(index, {
-        element: card,
-        status,
-      });
-    }
-  });
+      if (!Number.isNaN(index) && status) {
+        cards.set(index, {
+          element: card,
+          status,
+        });
+      }
+    });
 
   const states = new Map<number, boolean>(
     mediaQueries.map((_, index) => [index, false]),
