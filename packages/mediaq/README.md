@@ -19,9 +19,9 @@ npm i mediaq
 #### Use
 
 ```js
-import { Mediaq } from "mediaq";
+import { mediaq } from "mediaq";
 
-const mediaq = Mediaq({
+const listener = mediaq({
   onUpdate: (e) => console.log(e.name, e.media, e.matches),
   mediaQueries: [
     {
@@ -35,15 +35,15 @@ const mediaq = Mediaq({
   ],
 });
 
-mediaq.start();
+listener.start();
 
 // When done listening
-mediaq.stop();
+listener.stop();
 ```
 
 #### API
 
-The `Mediaq` function expects a single object argument with `onUpdate` and `mediaQueries` keys.
+The `mediaq` function expects a single object argument with `onUpdate` and `mediaQueries` keys.
 
 - `onUpdate` takes one argument having the `media`, `name` and `matches` properties.
 - `mediaQueries` is an array of objects having the `name` and `media` keys.

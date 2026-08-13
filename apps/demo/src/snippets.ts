@@ -2,9 +2,9 @@ export const snippets = {
   "install-npm": `npm install mediaq`,
   "install-pnpm": `pnpm add mediaq`,
   "install-yarn": `yarn add mediaq`,
-  mediaq: `import { Mediaq } from "mediaq";
+  mediaq: `import { mediaq } from "mediaq";
 
-const mediaq = Mediaq({
+const listener = mediaq({
   mediaQueries: [
     { name: "desktop", media: "(min-width: 768px)" },
     { name: "dark", media: "(prefers-color-scheme: dark)" },
@@ -14,5 +14,5 @@ const mediaq = Mediaq({
   },
 });
 
-mediaq.start();`,
+listener.start();`,
 } as const;

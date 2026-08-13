@@ -1,4 +1,4 @@
-import { Mediaq } from "mediaq";
+import { mediaq } from "mediaq";
 
 // Media queries used by the fixture UI.
 const mediaQueries = [
@@ -26,18 +26,18 @@ for (const element of document.querySelectorAll<HTMLInputElement>(
   queryInputs.set(query, element);
 }
 
-// Button used to stop the Mediaq observer from the fixture UI.
+// Button used to stop the mediaq listener from the fixture UI.
 const stopButton = document.querySelector<HTMLButtonElement>(
   "button[data-action='stop-observing']",
 );
 
-// Button used to restart the observer from the fixture UI.
+// Button used to restart the listener from the fixture UI.
 const startButton = document.querySelector<HTMLButtonElement>(
   "button[data-action='start-observing']",
 );
 
-// Wire Mediaq updates into the fixture UI by toggling the matching input state.
-const mediaq = Mediaq({
+// Wire mediaq updates into the fixture UI by toggling the matching input state.
+const listener = mediaq({
   mediaQueries,
   onUpdate({ name, matches }) {
     const input = queryInputs.get(name);
@@ -51,13 +51,13 @@ const mediaq = Mediaq({
 });
 
 // Start observing immediately so the fixture reflects the current environment.
-mediaq.start();
+listener.start();
 
 // Allow the fixture to stop and restart observation on demand.
 stopButton?.addEventListener("click", () => {
-  mediaq.stop();
+  listener.stop();
 });
 
 startButton?.addEventListener("click", () => {
-  mediaq.start();
+  listener.start();
 });

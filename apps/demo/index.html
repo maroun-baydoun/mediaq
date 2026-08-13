@@ -111,84 +111,84 @@
 
           <div class="media-grid" data-media-grid></div>
         </section>
+
+        <section class="page-section">
+          <div class="section-header">
+            <h3>Install</h3>
+            <p class="section-header-intro">
+              Install Mediaq with the package manager of your choice.
+            </p>
+          </div>
+
+          <chip-tabs data-default-tab="npm" id="install-tabs">
+            <div data-tablist aria-label="Package manager">
+              <button type="button" data-tab="npm">npm</button>
+              <button type="button" data-tab="pnpm">pnpm</button>
+              <button type="button" data-tab="yarn">yarn</button>
+            </div>
+
+            <div data-tab-panels>
+              <snippet-card data-tab-panel="npm" data-active="true">
+                <pre><code data-code="install-npm" data-language="shell"></code></pre>
+                <snippet-copy-button> Copy </snippet-copy-button>
+              </snippet-card>
+
+              <snippet-card data-tab-panel="pnpm" data-active="false">
+                <pre><code data-code="install-pnpm" data-language="shell"></code></pre>
+                <snippet-copy-button> Copy </snippet-copy-button>
+              </snippet-card>
+
+              <snippet-card data-tab-panel="yarn" data-active="false">
+                <pre><code data-code="install-yarn" data-language="shell"></code></pre>
+                <snippet-copy-button> Copy </snippet-copy-button>
+              </snippet-card>
+            </div>
+          </chip-tabs>
+        </section>
+
+        <section class="page-section" aria-labelledby="api-heading">
+          <div class="section-header">
+            <h3 id="api-heading">API</h3>
+            <p class="section-header-intro">
+              Mediaq exposes a small runtime API.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="space-y-3">
+              <h4>mediaq</h4>
+              <p class="text-sm leading-6 text-muted">
+                Create a listener from a set of media queries and an update
+                callback.
+              </p>
+            </div>
+
+            <div class="space-y-3">
+              <h4>start()</h4>
+              <p class="text-sm leading-6 text-muted">
+                Method on the object returned by <code>mediaq</code> that begins
+                listening to the media queries you pass in.
+              </p>
+            </div>
+
+            <div class="space-y-3">
+              <h4>stop()</h4>
+              <p class="text-sm leading-6 text-muted">
+                Method on the object returned by <code>mediaq</code> that stops
+                listening for future media query updates.
+              </p>
+            </div>
+
+            <div class="space-y-3">
+              <h4>isListening()</h4>
+              <p class="text-sm leading-6 text-muted">
+                Method on the object returned by <code>mediaq</code> that checks
+                whether the listener is currently active.
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
-
-      <section class="page-section">
-        <div class="section-header">
-          <h3>Install</h3>
-          <p class="section-header-intro">
-            Install Mediaq with the package manager of your choice.
-          </p>
-        </div>
-
-        <chip-tabs data-default-tab="npm" id="install-tabs">
-          <div data-tablist aria-label="Package manager">
-            <button type="button" data-tab="npm">npm</button>
-            <button type="button" data-tab="pnpm">pnpm</button>
-            <button type="button" data-tab="yarn">yarn</button>
-          </div>
-
-          <div data-tab-panels>
-            <snippet-card data-tab-panel="npm" data-active="true">
-              <pre><code data-code="install-npm" data-language="shell"></code></pre>
-              <snippet-copy-button> Copy </snippet-copy-button>
-            </snippet-card>
-
-            <snippet-card data-tab-panel="pnpm" data-active="false">
-              <pre><code data-code="install-pnpm" data-language="shell"></code></pre>
-              <snippet-copy-button> Copy </snippet-copy-button>
-            </snippet-card>
-
-            <snippet-card data-tab-panel="yarn" data-active="false">
-              <pre><code data-code="install-yarn" data-language="shell"></code></pre>
-              <snippet-copy-button> Copy </snippet-copy-button>
-            </snippet-card>
-          </div>
-        </chip-tabs>
-      </section>
-
-      <section class="page-section" aria-labelledby="api-heading">
-        <div class="section-header">
-          <h3 id="api-heading">API</h3>
-          <p class="section-header-intro">
-            Mediaq exposes a small runtime API.
-          </p>
-        </div>
-
-        <div class="space-y-6">
-          <div class="space-y-3">
-            <h4>Mediaq</h4>
-            <p class="text-sm leading-6 text-muted">
-              Create a listener from a set of media queries and an update
-              callback.
-            </p>
-          </div>
-
-          <div class="space-y-3">
-            <h4>start()</h4>
-            <p class="text-sm leading-6 text-muted">
-              Method on the object returned by <code>Mediaq</code> that begins
-              listening to the media queries you pass in.
-            </p>
-          </div>
-
-          <div class="space-y-3">
-            <h4>stop()</h4>
-            <p class="text-sm leading-6 text-muted">
-              Method on the object returned by <code>Mediaq</code> that stops
-              listening for future media query updates.
-            </p>
-          </div>
-
-          <div class="space-y-3">
-            <h4>isListening()</h4>
-            <p class="text-sm leading-6 text-muted">
-              Method on the object returned by <code>Mediaq</code> that checks
-              whether the listener is currently active.
-            </p>
-          </div>
-        </div>
-      </section>
 
       <footer>
         <nav>

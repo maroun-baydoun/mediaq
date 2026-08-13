@@ -29,7 +29,7 @@ async function openFixture(
   await page.goto("/");
 }
 
-test.describe("Mediaq", () => {
+test.describe("mediaq", () => {
   test("desktop viewport query matches at wide widths", async ({ page }) => {
     await openFixture(page, { viewport: { width: 800, height: 600 } });
 
@@ -68,7 +68,7 @@ test.describe("Mediaq", () => {
     ).toBeChecked();
   });
 
-  test("stopping Mediaq prevents viewport changes from updating", async ({
+  test("stopping mediaq prevents viewport changes from updating", async ({
     page,
   }) => {
     await openFixture(page, { viewport: { width: 800, height: 600 } });

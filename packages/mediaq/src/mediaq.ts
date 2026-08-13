@@ -14,7 +14,7 @@ export type MediaqArgs = {
   mediaQueries: MediaQuery[];
 };
 
-export const Mediaq = ({ onUpdate, mediaQueries }: MediaqArgs) => {
+export const mediaq = ({ onUpdate, mediaQueries }: MediaqArgs) => {
   let listening = false;
 
   const indexedMediaQueries: {

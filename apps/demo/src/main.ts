@@ -1,6 +1,6 @@
 import "./style.css";
 
-import { Mediaq } from "mediaq";
+import { mediaq } from "mediaq";
 
 import "./components/snippet-copy-button";
 import "./components/snippet-card";
@@ -79,7 +79,7 @@ if (mediaGrid && mediaSummaryCount && mediaSummaryTotal) {
     card.status.textContent = matches ? "matching" : "not matching";
   };
 
-  const mediaq = Mediaq({
+  const listener = mediaq({
     mediaQueries: mediaQueries.map((query) => ({
       media: query.media,
       name: query.name,
@@ -97,6 +97,6 @@ if (mediaGrid && mediaSummaryCount && mediaSummaryTotal) {
     },
   });
 
-  mediaq.start();
+  listener.start();
   renderSummary();
 }
