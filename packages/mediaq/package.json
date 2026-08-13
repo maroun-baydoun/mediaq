@@ -17,13 +17,13 @@
     "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist --project tsconfig.json",
     "build": "pnpm run build:clean && pnpm run build:js && pnpm run build:types",
     "prepublishOnly": "pnpm run build",
-    "release:patch": "npm version patch",
-    "release:minor": "npm version minor",
-    "release:major": "npm version major",
-    "release:beta": "npm version prerelease --preid beta",
-    "release:beta-major": "npm version premajor --preid beta",
-    "release:beta-minor": "npm version preminor --preid beta",
-    "release:beta-patch": "npm version prepatch --preid beta"
+    "release:patch": "pnpm version patch",
+    "release:minor": "pnpm version minor",
+    "release:major": "pnpm version major",
+    "release:beta": "pnpm version prerelease --preid beta",
+    "release:beta-major": "pnpm version premajor --preid beta",
+    "release:beta-minor": "pnpm version preminor --preid beta",
+    "release:beta-patch": "pnpm version prepatch --preid beta"
   },
   "repository": {
     "type": "git",
