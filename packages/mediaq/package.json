@@ -1,6 +1,6 @@
 {
   "name": "mediaq",
-  "version": "3.0.0-beta.0",
+  "version": "3.0.0-beta.1",
   "description": "Track media query changes in JavaScript",
   "main": "dist/mediaq.js",
   "types": "dist/mediaq.d.ts",
