@@ -1,6 +1,6 @@
-# Mediaq
+# mediaq
 
-Mediaq is a small browser library for listening to media query changes in JavaScript.
+mediaq is a small browser library for listening to media query changes in JavaScript.
 
 This repository contains:
 
@@ -18,7 +18,7 @@ pnpm test
 
 ## Demo
 
-The demo app shows the library running in the browser. Use `pnpm demo` to start it locally.
+The demo app shows mediaq running in the browser. Use `pnpm demo` to start it locally.
 
 ## Tests
 

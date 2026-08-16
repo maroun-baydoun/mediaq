@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">mediaq — Track media query changes in JavaScript</title>
+  <desc id="description">mediaq is an open source JavaScript library for tracking media query changes.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#020617" />
+      <stop offset="1" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#132337" />
+      <stop offset="1" stop-color="#07111f" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#background)" />
+  <rect width="760" height="630" fill="#020617" opacity=".82" />
+  <g id="project-specific-graphic" transform="translate(785 105) rotate(6)">
+    <rect width="350" height="420" rx="34" fill="url(#panel)" stroke="#475569" stroke-width="3" />
+    <rect x="28" y="38" width="294" height="294" rx="22" fill="#0f172a" stroke="#334155" stroke-width="3" />
+    <g font-family="SFMono-Regular, ui-monospace, Menlo, monospace">
+      <text x="51" y="91" fill="#67e8f9" font-size="31" font-weight="700">@media</text>
+      <text x="51" y="122" fill="#c4b5fd" font-size="15">(min-width: 768px)</text>
+      <path d="M51 145h178" stroke="#334155" stroke-linecap="round" stroke-width="3" />
+      <path d="M51 164h116" stroke="#475569" stroke-linecap="round" stroke-width="3" />
+      <path d="M51 183h151" stroke="#475569" stroke-linecap="round" stroke-width="3" />
+    </g>
+    <g fill="#67e8f9">
+      <rect x="51" y="220" width="62" height="64" rx="12" />
+      <rect x="121" y="220" width="62" height="64" rx="12" opacity=".68" />
+      <rect x="191" y="220" width="62" height="64" rx="12" opacity=".38" />
+    </g>
+    <path d="M51 305h202" stroke="#c4b5fd" stroke-linecap="round" stroke-width="5" />
+    <circle cx="51" cy="305" r="7" fill="#c4b5fd" />
+    <circle cx="253" cy="305" r="7" fill="#bef264" />
+  </g>
+  <g font-family="Avenir Next, Segoe UI, Helvetica Neue, Arial, sans-serif">
+    <text x="78" y="270" fill="#f8fafc" font-size="98" font-weight="650" letter-spacing="-3">mediaq</text>
+    <text x="84" y="342" fill="#67e8f9" font-size="34" font-weight="600">Track media query changes in JavaScript</text>
+  </g>
+</svg>

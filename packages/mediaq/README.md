@@ -1,6 +1,6 @@
-# Mediaq
+# mediaq
 
-Listen to media query updates in JavaScript.
+Track media query changes in JavaScript.
 
 [![npm version](https://badge.fury.io/js/mediaq.svg)](https://badge.fury.io/js/mediaq)
 
